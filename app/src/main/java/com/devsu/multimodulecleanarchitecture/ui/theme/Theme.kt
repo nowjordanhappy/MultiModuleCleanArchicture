@@ -1,4 +1,4 @@
-package com.devsu.myapplication.ui.theme
+package com.devsu.multimodulecleanarchitecture.ui.theme
 
 import android.app.Activity
 import android.os.Build

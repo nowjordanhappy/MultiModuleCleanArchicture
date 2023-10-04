@@ -1,4 +1,4 @@
-package com.devsu.myapplication
+package com.devsu.multimodulecleanarchitecture
 
 import org.junit.Test
 

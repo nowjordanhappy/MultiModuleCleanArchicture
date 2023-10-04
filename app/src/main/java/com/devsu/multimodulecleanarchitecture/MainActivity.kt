@@ -1,4 +1,4 @@
-package com.devsu.myapplication
+package com.devsu.multimodulecleanarchitecture
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.devsu.myapplication.ui.theme.MultiModuleCleanArchictureTheme
+import com.devsu.multimodulecleanarchitecture.ui.theme.MultiModuleCleanArchictureTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

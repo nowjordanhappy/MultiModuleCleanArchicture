@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.devsu.myapplication"
+    namespace = "com.devsu.multimodulecleanarchitecture"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.devsu.myapplication"
+        applicationId = "com.devsu.multimodulecleanarchitecture"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
