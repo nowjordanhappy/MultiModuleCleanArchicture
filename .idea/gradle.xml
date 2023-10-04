@@ -11,6 +11,13 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/movie" />
+            <option value="$PROJECT_DIR$/movie/movie-data" />
+            <option value="$PROJECT_DIR$/movie/movie-domain" />
+            <option value="$PROJECT_DIR$/movie/movie-ui" />
+            <option value="$PROJECT_DIR$/movie/movie-ui/movie-ui-mobile" />
+            <option value="$PROJECT_DIR$/movie/movie-ui/movie-ui-tv" />
           </set>
         </option>
       </GradleProjectSettings>

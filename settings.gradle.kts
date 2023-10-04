@@ -15,3 +15,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "MultiModuleCleanArchicture"
 include(":app")
+include(":movie")
+include(":movie:movie-data")
+include(":movie:movie-domain")
+include(":movie:movie-ui")
+include(":movie:movie-ui:movie-ui-tv")
+include(":movie:movie-ui:movie-ui-mobile")
+
