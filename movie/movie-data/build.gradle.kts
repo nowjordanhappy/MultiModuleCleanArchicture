@@ -1,9 +1,16 @@
-plugins {
-    id("java-library")
-    id("org.jetbrains.kotlin.jvm")
+import com.devsu.buildsrc.Modules
+import org.gradle.api.Project
+
+//project.properties["myNamespace"] = "com.devsu.movie_data"
+apply {
+    from("$rootDir/base-module.gradle")
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+dependencies {
+    "implementation"(project(Modules.core))
+    "implementation"(project(Modules.coreUi))
 }
+
+/*android {
+    namespace = 'com.devsu.movie_data'
+}*/

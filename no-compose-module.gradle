@@ -1,0 +1,58 @@
+import com.devsu.buildsrc.*
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdk ProjectConfig.compileSdk
+
+    defaultConfig {
+        minSdk ProjectConfig.minSdk
+        targetSdk ProjectConfig.targetSdk
+        versionCode ProjectConfig.versionCode
+        versionName ProjectConfig.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    viewBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation AndroidX.coreKtx
+    implementation AndroidX.appCompat
+    implementation AndroidX.fragment
+    implementation AndroidX.activity
+    implementation AndroidX.constraintLayout
+    implementation AndroidX.lifecycleViewModelKtx
+    implementation Leanback.leanback
+
+    implementation Fragment.navigationFragment
+    implementation Fragment.navigationUi
+
+    kapt DaggerHilt.hiltCompiler
+    kapt DaggerHilt.hiltAndroidCompiler
+    implementation DaggerHilt.hiltAndroid
+    //implementation DaggerHilt.hiltNavFragment
+}

@@ -21,4 +21,5 @@ include(":movie:movie-domain")
 include(":movie:movie-ui")
 include(":movie:movie-ui:movie-ui-tv")
 include(":movie:movie-ui:movie-ui-mobile")
-
+include(":core")
+include(":core-ui")
