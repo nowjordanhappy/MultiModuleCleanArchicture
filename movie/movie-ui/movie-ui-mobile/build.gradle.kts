@@ -12,10 +12,4 @@ dependencies {
     //"implementation"(project(Modules.movieData))
 
     "implementation"(Coil.coilKotlin)
-
 }
-/*
-android {
-    namespace = "com.devsu.movie_ui_mobile"
-}
-*/
