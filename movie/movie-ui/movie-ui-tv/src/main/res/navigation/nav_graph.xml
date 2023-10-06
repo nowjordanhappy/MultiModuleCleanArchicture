@@ -6,6 +6,21 @@
 
     <fragment
         android:id="@+id/movieListFragment"
-        android:name="com.devsu.movie_ui_tv.MovieListFragment"
-        android:label="MovieListFragment" />
+        android:name="com.devsu.movie_ui_tv.fragments.MovieListFragment"
+        android:label="MovieListFragment">
+
+
+        <action
+            android:id="@+id/action_movieListFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/errorFragment"
+        android:name="com.devsu.movie_ui_tv.fragments.ErrorFragment"
+        android:label="ErrorFragment" />
+
+    <dialog
+        android:id="@+id/spinnerFragment"
+        android:name="com.devsu.movie_ui_tv.fragments.SpinnerFragment"
+        android:label="SpinnerFragment" />
 </navigation>

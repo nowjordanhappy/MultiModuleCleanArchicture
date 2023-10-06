@@ -1,16 +1,14 @@
-package com.devsu.movie_ui_tv
+package com.devsu.movie_ui_tv.fragments
 
-import android.graphics.PixelFormat.TRANSLUCENT
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.leanback.app.ErrorSupportFragment
-import androidx.leanback.app.VerticalGridSupportFragment
-import androidx.navigation.Navigation.findNavController
+import com.devsu.movie_ui_tv.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieListFragment: ErrorSupportFragment() {
+class ErrorFragment: ErrorSupportFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

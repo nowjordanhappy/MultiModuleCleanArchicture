@@ -49,7 +49,7 @@ fun MovieListScreen(
         Text(
             text = stringResource(id = com.devsu.core_ui.R.string.title_movie_list),
             modifier = Modifier.padding(20.dp),
-            style = Typography.labelLarge
+            style = Typography.headlineMedium
         )
 
         if(state.movies.isNotEmpty()){
