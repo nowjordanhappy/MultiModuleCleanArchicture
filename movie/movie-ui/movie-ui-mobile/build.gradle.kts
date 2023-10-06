@@ -2,9 +2,8 @@ import com.devsu.buildsrc.Modules
 import com.devsu.buildsrc.Coil
 
 apply {
-    from("$rootDir/compose-module.gradle")
+    from("$rootDir/movie-ui-mobile-module.gradle")
 }
-
 
 dependencies {
     "implementation"(project(Modules.core))
@@ -13,4 +12,10 @@ dependencies {
     //"implementation"(project(Modules.movieData))
 
     "implementation"(Coil.coilKotlin)
+
 }
+/*
+android {
+    namespace = "com.devsu.movie_ui_mobile"
+}
+*/

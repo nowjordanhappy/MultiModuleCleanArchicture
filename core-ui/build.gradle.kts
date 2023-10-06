@@ -1,6 +1,7 @@
 apply{
-    from("$rootDir/no-compose-module.gradle")
+    from("$rootDir/core-ui-module.gradle")
 }
+
 
 dependencies {
 

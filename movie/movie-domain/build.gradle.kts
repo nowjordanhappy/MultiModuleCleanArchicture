@@ -1,7 +1,7 @@
 import com.devsu.buildsrc.Modules
 
 apply {
-    from("$rootDir/base-module.gradle")
+    from("$rootDir/movie-domain-module.gradle")
 }
 
 dependencies {

@@ -2,7 +2,7 @@ import com.devsu.buildsrc.Modules
 import com.devsu.buildsrc.Coil
 
 apply {
-    from("$rootDir/no-compose-module.gradle")
+    from("$rootDir/movie-ui-tv-module.gradle")
 }
 
 dependencies {
@@ -13,3 +13,7 @@ dependencies {
 
     "implementation"(Coil.coilKotlin)
 }
+
+/*android {
+    namespace = "com.devsu.movie_ui_tv"
+}*/
