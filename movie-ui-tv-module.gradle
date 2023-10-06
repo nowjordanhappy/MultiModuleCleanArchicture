@@ -1,4 +1,4 @@
-apply from: "$rootDir/compose-module.gradle"
+apply from: "$rootDir/no-compose-module.gradle"
 
 android{
     namespace = "com.devsu.movie_ui_tv"

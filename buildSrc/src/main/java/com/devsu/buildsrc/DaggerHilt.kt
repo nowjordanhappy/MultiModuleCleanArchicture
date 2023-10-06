@@ -11,4 +11,7 @@ object DaggerHilt {
 
     private const val hiltLifecycleVMVersion = "1.0.0-alpha034"
     const val hiltLifecycleVM = "androidx.hilt:hilt-lifecycle-viewmodel:$hiltLifecycleVMVersion"
+
+    private const val hiltNavComposeVersion = "1.0.0"
+    const val hiltNavCompose = "androidx.hilt:hilt-navigation-compose:$hiltNavComposeVersion"
 }

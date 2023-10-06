@@ -52,6 +52,28 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    flavorDimensions("platform")
+
+    productFlavors {
+        create("mobile") {
+            dimension = "platform"
+        }
+
+        create("tv") {
+            dimension = "platform"
+        }
+    }
+
+
+    sourceSets {
+        getByName("mobile") {
+            manifest.srcFile("src/mobile/AndroidManifest.xml")
+        }
+        getByName("tv") {
+            manifest.srcFile("src/tv/AndroidManifest.xml")
+        }
+    }
 }
 
 dependencies {
@@ -98,4 +120,5 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material3:material3")
 
+    implementation(Leanback.leanback)
 }

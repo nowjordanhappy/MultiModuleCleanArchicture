@@ -1,8 +1,11 @@
 package com.devsu.movie_data.di
 
 import com.devsu.core.Constants
+import com.devsu.movie_data.mapper.MovieDtoMapper
 import com.devsu.movie_data.remote.MovieApi
 import com.devsu.movie_data.remote.utils.OAuthInterceptor
+import com.devsu.movie_data.repository.MovieRepositoryImpl
+import com.devsu.movie_domain.repository.MovieRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,5 +50,16 @@ object MovieDataModule {
             .client(client)
             .build()
             .create()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMovieRepository(
+        api: MovieApi,
+    ): MovieRepository{
+        return MovieRepositoryImpl(
+            service = api,
+            mapper = MovieDtoMapper(),
+        )
     }
 }
