@@ -124,6 +124,6 @@ class MovieListFragment: VerticalGridSupportFragment() {
         val bundle = Bundle().apply {
             putString("message", message)
         }
-        //findNavController().navigate(R.id.action_movieListFragment_to_errorFragment, bundle)
+        findNavController().navigate(R.id.action_movieListFragment_to_errorFragment, bundle)
     }
 }

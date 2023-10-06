@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.leanback.app.ErrorSupportFragment
+import androidx.navigation.fragment.findNavController
 import com.devsu.movie_ui_tv.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ErrorFragment: ErrorSupportFragment() {
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setErrorContent()
@@ -23,7 +23,7 @@ class ErrorFragment: ErrorSupportFragment() {
 
         buttonText = resources.getString(R.string.dismiss_error)
         buttonClickListener = View.OnClickListener {
-            //findNavController().popBackStack()
+            findNavController().popBackStack()
         }
     }
 
