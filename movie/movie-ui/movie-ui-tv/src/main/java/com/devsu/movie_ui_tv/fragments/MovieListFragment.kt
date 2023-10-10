@@ -14,7 +14,6 @@ import androidx.leanback.widget.VerticalGridPresenter
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.devsu.core_ui.model.ProgressBarState
 import com.devsu.movie_domain.model.Movie
@@ -62,6 +61,8 @@ class MovieListFragment: VerticalGridSupportFragment() {
     }
 
     private fun setParams(){
+        title = getString(com.devsu.core_ui.R.string.title_movie_list)
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED){
                 viewModel.uiEvent.collect{ uiEvent->
@@ -124,6 +125,7 @@ class MovieListFragment: VerticalGridSupportFragment() {
         val bundle = Bundle().apply {
             putString("message", message)
         }
-        findNavController().navigate(R.id.action_movieListFragment_to_errorFragment, bundle)
+        findNavController().navigate(R.id.errorFragment, bundle)
+        //findNavController().navigate(R.id.action_movieListFragment_to_errorFragment, bundle)
     }
 }

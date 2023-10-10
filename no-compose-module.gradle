@@ -7,6 +7,7 @@ apply plugin: 'kotlin-parcelize'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'com.google.dagger.hilt.android'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdk ProjectConfig.compileSdk

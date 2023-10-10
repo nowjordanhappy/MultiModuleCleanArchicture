@@ -9,15 +9,12 @@
         android:name="com.devsu.movie_ui_tv.fragments.MovieListFragment"
         android:label="MovieListFragment">
 
-
-        <action
-            android:id="@+id/action_movieListFragment_to_errorFragment"
-            app:destination="@id/errorFragment" />
     </fragment>
     <fragment
         android:id="@+id/errorFragment"
         android:name="com.devsu.movie_ui_tv.fragments.ErrorFragment"
-        android:label="ErrorFragment" />
+        android:label="ErrorFragment">
+    </fragment>
 
     <dialog
         android:id="@+id/spinnerFragment"
