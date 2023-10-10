@@ -56,4 +56,13 @@ dependencies {
     kapt DaggerHilt.hiltAndroidCompiler
     implementation DaggerHilt.hiltAndroid
     implementation (DaggerHilt.hiltNavCompose)
+
+    testImplementation Testing.junit4
+    testImplementation Testing.junitAndroidExt
+    testImplementation Testing.truth
+    testImplementation Testing.coroutines
+    testImplementation Testing.composeUiTest
+    testImplementation Testing.mockk
+    testImplementation Testing.mockWebServer
+    testImplementation Testing.kotlinTest
 }
