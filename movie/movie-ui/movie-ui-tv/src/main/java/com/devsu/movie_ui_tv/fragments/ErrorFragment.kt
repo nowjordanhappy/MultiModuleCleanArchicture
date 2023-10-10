@@ -32,7 +32,6 @@ class ErrorFragment: ErrorSupportFragment() {
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
