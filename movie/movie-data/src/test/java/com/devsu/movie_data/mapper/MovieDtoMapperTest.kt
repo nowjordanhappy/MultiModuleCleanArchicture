@@ -8,7 +8,7 @@ import kotlin.test.assertContains
 import kotlin.test.assertEquals
 
 class MovieDtoMapperTest {
-    val mapper = MovieDtoMapper()
+    private val mapper = MovieDtoMapper()
 
     @Test
     fun mapToDomainModel_resultsValidMovieObject() {
