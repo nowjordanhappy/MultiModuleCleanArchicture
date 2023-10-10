@@ -66,4 +66,6 @@ dependencies {
     testImplementation Testing.mockk
     testImplementation Testing.mockWebServer
     testImplementation Testing.kotlinTest
+    androidTestImplementation Testing.junit4
+    androidTestImplementation Testing.junitAndroidExt
 }

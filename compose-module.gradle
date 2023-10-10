@@ -60,9 +60,15 @@ dependencies {
     testImplementation Testing.junit4
     testImplementation Testing.junitAndroidExt
     testImplementation Testing.truth
-    testImplementation Testing.coroutines
-    testImplementation Testing.composeUiTest
     testImplementation Testing.mockk
     testImplementation Testing.mockWebServer
     testImplementation Testing.kotlinTest
+
+    androidTestImplementation Testing.junit4
+    androidTestImplementation Testing.junitAndroidExt
+    androidTestImplementation Testing.truth
+    androidTestImplementation Testing.composeUiTest
+    androidTestImplementation Testing.hiltTesting
+    androidTestImplementation Testing.testRunner
+    androidTestImplementation Testing.coroutines
 }
