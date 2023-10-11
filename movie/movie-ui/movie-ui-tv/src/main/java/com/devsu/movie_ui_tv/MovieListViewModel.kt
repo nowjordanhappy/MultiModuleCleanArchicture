@@ -29,15 +29,15 @@ class MovieListViewModel @Inject constructor(
     private val _progressBarState: MutableStateFlow<ProgressBarState> = MutableStateFlow(ProgressBarState.Idle)
     val progressBarState: StateFlow<ProgressBarState> = _progressBarState.asStateFlow()
 
-    private val _photoList = MutableStateFlow(emptyList<Movie>())
-    val photoList: StateFlow<List<Movie>> = _photoList.asStateFlow()
+    private val _movies = MutableStateFlow(emptyList<Movie>())
+    val movies: StateFlow<List<Movie>> = _movies.asStateFlow()
 
     private val _page = MutableStateFlow(1)
+    private val language: String = Constants.DEFAULT_LANGUAGE
 
     private val _uiEvent = Channel<MovieListUiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-    private val language: String = Constants.DEFAULT_LANGUAGE
     val numColumns = 3
     val cardWidth = (0.8 * ScreenHelper.getScreenWidth() / numColumns).toInt()
     val cardHeight = (cardWidth * 0.6).toInt()
@@ -62,7 +62,7 @@ class MovieListViewModel @Inject constructor(
             .onEach { dataState->
                 when(dataState){
                     is DataState.Data -> {
-                        _photoList.value = dataState.data ?: emptyList()
+                        _movies.value = dataState.data ?: emptyList()
                     }
                     is DataState.Loading -> {
                         _progressBarState.value = dataState.progressBarState

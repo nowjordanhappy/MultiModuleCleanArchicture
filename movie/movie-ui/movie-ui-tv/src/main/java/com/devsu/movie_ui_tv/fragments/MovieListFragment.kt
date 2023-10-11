@@ -1,12 +1,8 @@
 package com.devsu.movie_ui_tv.fragments
 
-import android.graphics.PixelFormat.TRANSLUCENT
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.leanback.app.ErrorSupportFragment
 import androidx.leanback.app.VerticalGridSupportFragment
 import androidx.leanback.widget.ArrayObjectAdapter
 import androidx.leanback.widget.OnItemViewClickedListener
@@ -78,10 +74,10 @@ class MovieListFragment: VerticalGridSupportFragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED){
-                viewModel.photoList.collect{ photoList->
+                viewModel.movies.collect{ movies->
                     mAdapter = null
                     setupAdapterMovies()
-                    photoList.forEach {
+                    movies.forEach {
                         mAdapter?.add(it)
                     }
                 }
@@ -109,14 +105,14 @@ class MovieListFragment: VerticalGridSupportFragment() {
         onItemViewClickedListener =
             OnItemViewClickedListener { itemViewHolder, item, rowViewHolder, row ->
                 if (item is Movie) {
-
+                    //redirect to detail
                 }
             }
 
 
         setOnItemViewSelectedListener { itemViewHolder, item, rowViewHolder, row ->
             if (item is Movie) {
-
+                //Change background?
             }
         }
     }
