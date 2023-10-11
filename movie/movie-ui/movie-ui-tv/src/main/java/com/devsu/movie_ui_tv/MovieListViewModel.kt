@@ -37,7 +37,7 @@ class MovieListViewModel @Inject constructor(
     private val _uiEvent = Channel<MovieListUiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-    val language: String = Constants.DEFAULT_LANGUAGE
+    private val language: String = Constants.DEFAULT_LANGUAGE
     val numColumns = 3
     val cardWidth = (0.8 * ScreenHelper.getScreenWidth() / numColumns).toInt()
     val cardHeight = (cardWidth * 0.6).toInt()

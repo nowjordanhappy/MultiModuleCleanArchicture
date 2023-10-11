@@ -9,7 +9,6 @@ dependencies {
     "implementation"(project(Modules.core))
     "implementation"(project(Modules.coreUi))
     "implementation"(project(Modules.movieDomain))
-    //"implementation"(project(Modules.movieData))
 
     "implementation"(Coil.coilKotlin)
 }

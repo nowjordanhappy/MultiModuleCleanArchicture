@@ -10,7 +10,7 @@ import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
 @InstallIn(ViewModelComponent::class)
-object PhotoDomainModule {
+object MovieDomainModule {
     @ViewModelScoped
     @Provides
     fun provideGetNowPlayingMovies(
