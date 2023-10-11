@@ -14,7 +14,7 @@ object Testing {
     const val truth = "com.google.truth:truth:$truthVersion"
 
     //private const val mockkVersion = "1.9.1"
-    private const val mockkVersion = "1.13.4"
+    private const val mockkVersion = "1.13.3"
     const val mockk = "io.mockk:mockk:$mockkVersion"
     const val mockkAndroid = "io.mockk:mockk-android:$mockkVersion"
 
@@ -28,10 +28,14 @@ object Testing {
 
     private const val expressoVersion = "3.3.0"
     const val expresso = "androidx.test.espresso:espresso-core:${expressoVersion}"
+
     const val hiltTesting = "com.google.dagger:hilt-android-testing:${DaggerHilt.version}"
 
     private const val testRunnerVersion = "1.4.0"
     const val testRunner = "androidx.test:runner:$testRunnerVersion"
 
     const val kotlinTest = "org.jetbrains.kotlin:kotlin-test-junit:${Kotlin.version}"
+
+    private const val coreTestingVersion = "2.1.0"
+    const val coreTesting = "androidx.arch.core:core-testing:${coreTestingVersion}"
 }

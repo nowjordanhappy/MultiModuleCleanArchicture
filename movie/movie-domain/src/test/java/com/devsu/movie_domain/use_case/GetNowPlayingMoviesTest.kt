@@ -59,7 +59,7 @@ class GetNowPlayingMoviesTest {
 
         //Second emission
         assert(moviesAsFlow[1] is DataState.Response)
-        assert(((moviesAsFlow[1] as DataState.Response).uiComponent as UIComponent.None).message == "Check you connection")
+        assert(((moviesAsFlow[1] as DataState.Response).uiComponent as UIComponent.None).message == "Check your connection")
 
         //Third emission
         assert(moviesAsFlow[2] is DataState.Loading)

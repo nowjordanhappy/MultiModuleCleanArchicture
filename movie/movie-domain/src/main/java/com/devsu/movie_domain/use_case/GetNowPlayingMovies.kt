@@ -22,7 +22,7 @@ class GetNowPlayingMovies(
             ))
 
             if(!isNetworkAvailable){
-                emit(DataState.Response(UIComponent.None("Check you connection")))
+                emit(DataState.Response(UIComponent.None("Check your connection")))
             }else{
                 try {
                     val movies = repository.getNowPlayingMovies(

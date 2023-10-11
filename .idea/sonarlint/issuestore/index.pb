@@ -171,3 +171,16 @@ Tmovie/movie-ui/movie-ui-tv/src/main/java/com/devsu/movie_ui_tv/MovieListViewMod
 ]movie/movie-ui/movie-ui-tv/src/main/java/com/devsu/movie_ui_tv/fragments/MovieListFragment.kt,3/2/32fed0dea8f8a34519d058ee8d3e6c128974764e
 â
 Ymovie/movie-ui/movie-ui-tv/src/main/java/com/devsu/movie_ui_tv/fragments/ErrorFragment.kt,c/a/ca941d2f21d2dc7673565024ede38fda3080cac8
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+â
+Ymovie/movie-ui/movie-ui-mobile/src/test/java/com/devsu/movie_ui_mobile/ExampleUnitTest.kt,a/d/adf242f747036b925f12583c82be220d41159487
+è
+_movie/movie-ui/movie-ui-mobile/src/androidTest/java/com/devsu/movie_ui_mobile/HiltTestRunner.kt,e/9/e933c866284c78cd9b0104806d570ae44ec38708
+d
+4buildSrc/src/main/java/com/devsu/buildsrc/Testing.kt,d/6/d6628fb8e637d91e19853d38f9956798f9155aa9
+ê
+`movie/movie-ui/movie-ui-mobile/src/test/java/com/devsu/movie_ui_mobile/MovieListViewModelTest.kt,2/0/2044dbd609b129f5da4df1480fea49740ef6f365
+ó
+gmovie/movie-ui/movie-ui-mobile/src/androidTest/java/com/devsu/movie_ui_mobile/MovieListViewModelTest.kt,2/f/2f3ae4c7701d3706fcb1b5e46c31a91fa0e2ddf1

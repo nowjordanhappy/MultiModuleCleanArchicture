@@ -2,4 +2,7 @@ apply from: "$rootDir/compose-module.gradle"
 
 android{
     namespace = "com.devsu.movie_ui_mobile"
+    defaultConfig {
+        testInstrumentationRunner "com.devsu.movie_ui_mobile.HiltTestRunner"
+    }
 }
