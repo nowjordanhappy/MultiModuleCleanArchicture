@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginLeft
+import androidx.core.view.marginRight
 import androidx.leanback.widget.BaseCardView
 import androidx.leanback.widget.ImageCardView
 import androidx.leanback.widget.Presenter
@@ -68,7 +70,6 @@ class MoviePresenter(
         cardView.contentText = movie.originalTitle + "\n★${movie.voteAverage}   |   ${movie.releaseDate}"
         cardView.setMainImageDimensions(width, height)
 
-
         cardView.mainImageView.scaleType = ImageView.ScaleType.CENTER_CROP
         cardView.mainImageView
             .load(movie.photoUrl){
@@ -76,7 +77,14 @@ class MoviePresenter(
                 placeholder(com.devsu.core_ui.R.drawable.ic_placeholder)
             }
 
-        }
+        /*val layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        val margin = 20
+        layoutParams.setMargins(margin, margin, margin, margin)
+        cardView.layoutParams = layoutParams*/
+    }
 
     override fun onUnbindViewHolder(viewHolder: ViewHolder?) {
         viewHolder?.let {

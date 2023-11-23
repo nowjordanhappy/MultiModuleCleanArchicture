@@ -1,8 +1,13 @@
 package com.devsu.movie_ui_tv.fragments
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.leanback.app.BackgroundManager
 import androidx.leanback.app.VerticalGridSupportFragment
 import androidx.leanback.widget.ArrayObjectAdapter
 import androidx.leanback.widget.OnItemViewClickedListener
@@ -11,6 +16,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import coil.Coil
+import coil.ImageLoader
+import coil.load
+import coil.request.ImageRequest
 import com.devsu.core_ui.model.ProgressBarState
 import com.devsu.movie_domain.model.Movie
 import com.devsu.movie_ui_tv.MovieListUiEvent
@@ -22,9 +31,12 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MovieListFragment: VerticalGridSupportFragment() {
-    private val viewModel: MovieListViewModel by activityViewModels()
+    private val viewModel: MovieListViewModel by viewModels()
 
     private var mAdapter: ArrayObjectAdapter? = null
+
+    private lateinit var mBackgroundManager: BackgroundManager
+    private lateinit var mMetrics: DisplayMetrics
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupFragment()
@@ -34,6 +46,7 @@ class MovieListFragment: VerticalGridSupportFragment() {
         super.onActivityCreated(savedInstanceState)
         setParams()
         setupEventListeners()
+        prepareBackgroundManager()
 
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -113,8 +126,31 @@ class MovieListFragment: VerticalGridSupportFragment() {
         setOnItemViewSelectedListener { itemViewHolder, item, rowViewHolder, row ->
             if (item is Movie) {
                 //Change background?
+                updateBackground(item.photoUrl)
             }
         }
+    }
+
+    private fun updateBackground(url: String){
+        val request = ImageRequest.Builder(requireContext())
+            .data(url)
+            .crossfade(true)
+            .target { drawable ->
+                // Handle the result.
+                drawable.alpha = (255 * 0.3).toInt()
+                mBackgroundManager.drawable = drawable
+            }
+            .build()
+        val imageLoader = ImageLoader(requireContext())
+        imageLoader.enqueue(request)
+    }
+
+    private fun prepareBackgroundManager() {
+        mBackgroundManager = BackgroundManager.getInstance(requireActivity())
+        mBackgroundManager.attach(requireActivity().window)
+        //mDefaultBackground = ContextCompat.getDrawable(requireActivity(), R.drawable.default_background)
+        mMetrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(mMetrics)
     }
 
     private fun showError(message: String) {
