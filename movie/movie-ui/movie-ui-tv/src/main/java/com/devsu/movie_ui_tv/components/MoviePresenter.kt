@@ -1,7 +1,11 @@
 package com.devsu.movie_ui_tv.components
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.os.Build
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,6 +17,8 @@ import androidx.leanback.widget.ImageCardView
 import androidx.leanback.widget.Presenter
 import coil.load
 import com.devsu.movie_domain.model.Movie
+import com.devsu.movie_ui_tv.R
+import com.devsu.movie_ui_tv.databinding.CustomImageCardViewBinding
 import kotlin.properties.Delegates
 
 class MoviePresenter(
@@ -41,12 +47,13 @@ class MoviePresenter(
             com.devsu.core_ui.R.drawable.ic_placeholder
         )
 
-        val cardView = object : ImageCardView(parent.context) {
+        val cardView = CustomImageCardView(parent.context)
+        /*val cardView = object : ImageCardView(parent.context) {
             override fun setSelected(selected: Boolean) {
                 updateCardBackgroundColor(this, selected)
                 super.setSelected(selected)
             }
-        }
+        }*/
 
         cardView.isFocusable = true
         cardView.isFocusableInTouchMode = true
@@ -56,9 +63,36 @@ class MoviePresenter(
 
     override fun onBindViewHolder(viewHolder: Presenter.ViewHolder, item: Any) {
         val movie = item as Movie
-        val cardView = viewHolder.view as ImageCardView
+        /*val cardView = viewHolder.view as ImageCardView
         val titleTV = cardView.findViewById<TextView>(androidx.leanback.R.id.title_text)
         val contentTV = cardView.findViewById<TextView>(androidx.leanback.R.id.content_text)
+
+        titleTV.setTextColor(Color.WHITE)
+        contentTV.setTextColor(Color.GRAY)
+        contentTV.maxLines = Int.MAX_VALUE
+
+        cardView.cardType = BaseCardView.CARD_TYPE_INFO_UNDER_WITH_EXTRA;
+
+        cardView.titleText = movie.title
+        cardView.contentText = movie.originalTitle + "\n★${movie.voteAverage}   |   ${movie.releaseDate}"
+        cardView.setMainImageDimensions(width, height)
+
+        cardView.mainImageView.scaleType = ImageView.ScaleType.CENTER_CROP
+        cardView.mainImageView
+            .load(movie.photoUrl){
+                crossfade(true)
+                placeholder(com.devsu.core_ui.R.drawable.ic_placeholder)
+            }*/
+
+        //custom example
+        loadCustomeImageCardView(viewHolder.view, movie)
+    }
+
+    private fun loadCustomeImageCardView(view: View, movie: Movie){
+        val cardView = view as CustomImageCardView
+        val titleTV = cardView.findViewById<TextView>(R.id.title_text)
+        val contentTV = cardView.findViewById<TextView>(R.id.content_text)
+        val mainImageView = cardView.findViewById<ImageView>(R.id.main_image)
 
         titleTV.setTextColor(Color.WHITE)
         contentTV.setTextColor(Color.GRAY)
@@ -70,20 +104,12 @@ class MoviePresenter(
         cardView.contentText = movie.originalTitle + "\n★${movie.voteAverage}   |   ${movie.releaseDate}"
         cardView.setMainImageDimensions(width, height)
 
-        cardView.mainImageView.scaleType = ImageView.ScaleType.CENTER_CROP
-        cardView.mainImageView
+        mainImageView.scaleType = ImageView.ScaleType.CENTER_CROP
+        mainImageView
             .load(movie.photoUrl){
                 crossfade(true)
                 placeholder(com.devsu.core_ui.R.drawable.ic_placeholder)
             }
-
-        /*val layoutParams = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        val margin = 20
-        layoutParams.setMargins(margin, margin, margin, margin)
-        cardView.layoutParams = layoutParams*/
     }
 
     override fun onUnbindViewHolder(viewHolder: ViewHolder?) {
@@ -102,6 +128,24 @@ class MoviePresenter(
         // during animations.
         view.setBackgroundColor(color)
         //view.setInfoAreaBackgroundColor(color)
+    }
+
+    class CustomImageCardView(context: Context): ImageCardView(context){
+        init {
+            // Customize the appearance of the ImageCardView
+            cardType = BaseCardView.CARD_TYPE_MAIN_ONLY
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                focusable = View.FOCUSABLE
+            }
+            isFocusableInTouchMode = true
+            isFocusable = true
+        }
+
+
+        /*override fun onCreateView(): View {
+            val binding = CustomImageCardViewBinding.inflate(LayoutInflater.from(context), this, true)
+            return binding.root
+        }*/
     }
 
     companion object {
