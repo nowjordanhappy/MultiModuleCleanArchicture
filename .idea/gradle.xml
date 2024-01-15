@@ -21,6 +21,11 @@
             <option value="$PROJECT_DIR$/movie/movie-ui" />
             <option value="$PROJECT_DIR$/movie/movie-ui/movie-ui-mobile" />
             <option value="$PROJECT_DIR$/movie/movie-ui/movie-ui-tv" />
+            <option value="$PROJECT_DIR$/streaming" />
+            <option value="$PROJECT_DIR$/streaming/streaming-data" />
+            <option value="$PROJECT_DIR$/streaming/streaming-domain" />
+            <option value="$PROJECT_DIR$/streaming/streaming-ui" />
+            <option value="$PROJECT_DIR$/streaming/streaming-ui/streaming-ui-tv" />
           </set>
         </option>
       </GradleProjectSettings>

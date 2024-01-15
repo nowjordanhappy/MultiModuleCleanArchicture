@@ -54,12 +54,11 @@ android {
 dependencies {
     //implementation Compose.compiler
     implementation Compose.activityCompose
-    implementation platform("androidx.compose:compose-bom:2023.03.00")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
+    implementation platform(Compose.platformComposeBmo)
+    implementation(Compose.composeUiBmo)
+    implementation(Compose.composeUiGraphicsBmo)
+    implementation(Compose.composeUiToolingPreviewBmo)
+    implementation(Compose.composeMaterial3Bmo)
 
     kapt DaggerHilt.hiltCompiler
     kapt DaggerHilt.hiltAndroidCompiler

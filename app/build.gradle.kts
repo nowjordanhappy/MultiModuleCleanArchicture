@@ -94,6 +94,10 @@ dependencies {
     implementation(project(Modules.movieDomain))
     implementation(project(Modules.movieData))
 
+    implementation(project(Modules.streamingDomain))
+    implementation(project(Modules.streamingData))
+    implementation(project(Modules.streamingUiTv))
+
     implementation(Retrofit.okHttpBmo)
     implementation(Retrofit.okHttp)
     implementation(Retrofit.okHttpLoggingInterceptor)

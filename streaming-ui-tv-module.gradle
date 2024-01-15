@@ -1,0 +1,5 @@
+apply from: "$rootDir/compose-module.gradle"
+
+android{
+    namespace = "com.devsu.streaming_ui_tv"
+}
