@@ -1,11 +1,9 @@
 package com.devsu.movie_ui_tv.fragments
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.View
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.activityViewModels
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.leanback.app.BackgroundManager
 import androidx.leanback.app.VerticalGridSupportFragment
@@ -16,9 +14,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import coil.Coil
 import coil.ImageLoader
-import coil.load
 import coil.request.ImageRequest
 import com.devsu.core_ui.model.ProgressBarState
 import com.devsu.movie_domain.model.Movie
@@ -119,6 +115,7 @@ class MovieListFragment: VerticalGridSupportFragment() {
             OnItemViewClickedListener { itemViewHolder, item, rowViewHolder, row ->
                 if (item is Movie) {
                     //redirect to detail
+                    Toast.makeText(requireContext(), getString(R.string.clicking_movie, item.title), Toast.LENGTH_SHORT).show()
                 }
             }
 

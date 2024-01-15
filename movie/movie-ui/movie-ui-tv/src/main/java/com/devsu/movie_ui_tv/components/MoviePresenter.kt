@@ -31,7 +31,6 @@ class MoviePresenter(
 
     private var defaultDateString = "No Date"
 
-
     override fun onCreateViewHolder(parent: ViewGroup): Presenter.ViewHolder {
         sDefaultBackgroundColor = ContextCompat.getColor(
             parent.context,
