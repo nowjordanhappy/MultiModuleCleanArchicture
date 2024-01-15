@@ -2,4 +2,5 @@
 <resources>
     <string name="dismiss_error">Dismiss</string>
     <string name="title_tv_app">Demo</string>
+    <string name="clicking_movie">Clicking %s</string>
 </resources>

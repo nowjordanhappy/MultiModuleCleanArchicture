@@ -1,16 +1,24 @@
 package com.devsu.movie_ui_tv.components
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.os.Build
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginLeft
+import androidx.core.view.marginRight
 import androidx.leanback.widget.BaseCardView
 import androidx.leanback.widget.ImageCardView
 import androidx.leanback.widget.Presenter
 import coil.load
 import com.devsu.movie_domain.model.Movie
+import com.devsu.movie_ui_tv.R
+import com.devsu.movie_ui_tv.databinding.CustomImageCardViewBinding
 import kotlin.properties.Delegates
 
 class MoviePresenter(
@@ -22,7 +30,6 @@ class MoviePresenter(
     private var sDefaultBackgroundColor: Int by Delegates.notNull()
 
     private var defaultDateString = "No Date"
-
 
     override fun onCreateViewHolder(parent: ViewGroup): Presenter.ViewHolder {
         sDefaultBackgroundColor = ContextCompat.getColor(
@@ -62,12 +69,11 @@ class MoviePresenter(
         contentTV.setTextColor(Color.GRAY)
         contentTV.maxLines = Int.MAX_VALUE
 
-        cardView.cardType = BaseCardView.CARD_TYPE_INFO_OVER;
+        cardView.cardType = BaseCardView.CARD_TYPE_INFO_UNDER_WITH_EXTRA;
 
         cardView.titleText = movie.title
         cardView.contentText = movie.originalTitle + "\n★${movie.voteAverage}   |   ${movie.releaseDate}"
         cardView.setMainImageDimensions(width, height)
-
 
         cardView.mainImageView.scaleType = ImageView.ScaleType.CENTER_CROP
         cardView.mainImageView
@@ -75,8 +81,7 @@ class MoviePresenter(
                 crossfade(true)
                 placeholder(com.devsu.core_ui.R.drawable.ic_placeholder)
             }
-
-        }
+    }
 
     override fun onUnbindViewHolder(viewHolder: ViewHolder?) {
         viewHolder?.let {
