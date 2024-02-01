@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.tv.material3.Text
+import com.devsu.core.toHexColor
 import com.devsu.streaming_domain.model.User
 import com.devsu.streaming_ui_tv.R
 import com.devsu.streaming_ui_tv.choose_your_profile.components.UserItemList
@@ -54,8 +55,9 @@ fun ChooseYourProfile(
                     Log.v("TV", "user focused: ${user.name}")
                 },
                 onSelectItem = { user ->
+                    Log.v("TV", "user selected: ${user.name} - color: ${user.backgroundColor.toHexColor()}")
                     viewModel.onEvent(ChooseYourProfileEvent.OnSelectUser(user))
-                    Log.v("TV", "user selected: ${user.name}")
+                    //viewModel.onEvent(ChooseYourProfileEvent.OnNavigateToMain)
                 }
             )
 

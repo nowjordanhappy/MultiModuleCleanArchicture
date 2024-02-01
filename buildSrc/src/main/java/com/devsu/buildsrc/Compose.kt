@@ -37,4 +37,7 @@ object Compose {
     private const val tvComposeVersion = "1.0.0-alpha07"
     const val tvComposeFoundation = "androidx.tv:tv-foundation:$tvComposeVersion"
     const val tvComposeMaterial = "androidx.tv:tv-material:$tvComposeVersion"
+
+    private const val materialComposeIconsExtendedVersion = "1.4.1"
+    const val materialComposeIconsExtended = "androidx.compose.material:material-icons-extended:$materialComposeIconsExtendedVersion"
 }

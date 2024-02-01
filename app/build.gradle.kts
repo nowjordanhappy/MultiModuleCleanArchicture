@@ -94,6 +94,9 @@ dependencies {
     implementation(project(Modules.movieDomain))
     implementation(project(Modules.movieData))
 
+    implementation(project(Modules.navigation))
+    implementation(project(Modules.preferences))
+
     implementation(project(Modules.streamingDomain))
     implementation(project(Modules.streamingData))
     implementation(project(Modules.streamingUiTv))

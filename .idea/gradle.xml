@@ -21,6 +21,8 @@
             <option value="$PROJECT_DIR$/movie/movie-ui" />
             <option value="$PROJECT_DIR$/movie/movie-ui/movie-ui-mobile" />
             <option value="$PROJECT_DIR$/movie/movie-ui/movie-ui-tv" />
+            <option value="$PROJECT_DIR$/navigation" />
+            <option value="$PROJECT_DIR$/preferences" />
             <option value="$PROJECT_DIR$/streaming" />
             <option value="$PROJECT_DIR$/streaming/streaming-data" />
             <option value="$PROJECT_DIR$/streaming/streaming-domain" />

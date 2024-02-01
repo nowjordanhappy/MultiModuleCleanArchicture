@@ -9,6 +9,7 @@ dependencies {
     "implementation"(project(Modules.core))
     "implementation"(project(Modules.coreUi))
     "implementation"(project(Modules.streamingDomain))
+    "implementation"(project(Modules.preferences))
 
     "implementation"(platform(Retrofit.okHttpBmo))
     "implementation"(Retrofit.okHttp)

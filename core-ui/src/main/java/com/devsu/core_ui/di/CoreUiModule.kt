@@ -16,4 +16,5 @@ object CoreUiModule {
     fun provideManagerConnection(application: Application): ManagerConnection {
         return ManagerConnection(application.applicationContext)
     }
+
 }

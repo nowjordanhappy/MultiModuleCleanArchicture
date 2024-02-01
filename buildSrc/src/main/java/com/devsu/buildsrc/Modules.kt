@@ -5,6 +5,8 @@ object Modules {
 
     const val core = ":core"
     const val coreUi = ":core-ui"
+    const val navigation = ":navigation"
+    const val preferences = ":preferences"
     const val movieData = ":movie:movie-data"
     const val movieDomain = ":movie:movie-domain"
     const val movieUi = ":movie:movie-ui"

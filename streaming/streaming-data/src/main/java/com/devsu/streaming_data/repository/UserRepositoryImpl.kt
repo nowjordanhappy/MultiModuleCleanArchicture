@@ -1,15 +1,30 @@
 package com.devsu.streaming_data.repository
 
 import android.graphics.Color
+import com.devsu.preferences.PreferencesManager
 import com.devsu.streaming_domain.model.User
 import com.devsu.streaming_domain.repository.UserRepository
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.firstOrNull
 
 class UserRepositoryImpl(
+    private val preference: PreferencesManager
 ) : UserRepository {
     private val users = getTestUsers()
 
     override suspend fun getUsers(): List<User> {
         return users
+    }
+
+    override suspend fun setCurrentUser(id: Int) {
+        preference.setUserId(id)
+    }
+
+    override suspend fun getCurrentUser(): User? {
+        preference.getUserId().firstOrNull()?.let { id->
+            return users.firstOrNull { it.id == id }
+        }
+        return null
     }
 
     private fun getTestUsers(): List<User> {
