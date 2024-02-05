@@ -57,7 +57,6 @@ fun ChooseYourProfile(
                 onSelectItem = { user ->
                     Log.v("TV", "user selected: ${user.name} - color: ${user.backgroundColor.toHexColor()}")
                     viewModel.onEvent(ChooseYourProfileEvent.OnSelectUser(user))
-                    //viewModel.onEvent(ChooseYourProfileEvent.OnNavigateToMain)
                 }
             )
 

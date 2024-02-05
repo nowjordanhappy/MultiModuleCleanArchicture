@@ -3,15 +3,16 @@
 package com.devsu.streaming_ui_tv.radio.components
 
 import android.net.Uri
+import android.text.Layout
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MusicNote
@@ -21,25 +22,23 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.tv.material3.Card
 import androidx.tv.material3.CardDefaults
-import androidx.tv.material3.ClickableSurfaceDefaults
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.Text
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.devsu.streaming_domain.model.Radio
 import com.devsu.streaming_ui_tv.theme.DarkPurple
+import com.murgupluoglu.flagkit.FlagKit
 
 @Composable
 fun RadioItem(
@@ -52,6 +51,7 @@ fun RadioItem(
         onClick = onClick,
         scale = CardDefaults.scale(focusedScale = 1.15f),
     ) {
+        val context = LocalContext.current
         Column {
             Log.v("JordanRA", "name: ${radio.name}- image: ${radio.favicon}")
             RadioImage(radio.favicon?.let { Uri.parse(it) } ?: kotlin.run { null })
@@ -59,7 +59,31 @@ fun RadioItem(
                 modifier = Modifier.padding(horizontal = 10.dp, vertical = 10.dp)
             ){
                 Text(text = radio.name, maxLines = 2, overflow = TextOverflow.Ellipsis)
-                Text(text = "⭐${radio.votes}")
+                Row (
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ){
+                    Text(
+                        text = "⭐${radio.votes}",
+                        modifier = Modifier.weight(1f)
+                    )
+                    radio.countrycode?.let {  countrycode->
+                        Log.v("JordanRA", "countrycode: $countrycode: -length: ${countrycode.length}")
+                        Box(
+                            modifier = Modifier
+                                .weight(1f),
+                            contentAlignment = Alignment.CenterEnd
+                        ) {
+                            Image(
+                                painter = painterResource(
+                                    id = FlagKit.getResId(
+                                        context,
+                                        countrycode
+                                    )
+                                ), contentDescription = countrycode,
+                            )
+                        }
+                    }
+                }
             }
         }
     }

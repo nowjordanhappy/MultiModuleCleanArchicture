@@ -3,7 +3,9 @@ package com.devsu.streaming_domain.di
 import com.devsu.streaming_domain.repository.RadioRepository
 import com.devsu.streaming_domain.repository.UserRepository
 import com.devsu.streaming_domain.use_case.GetCurrentUser
-import com.devsu.streaming_domain.use_case.GetRadioListByTag
+import com.devsu.streaming_domain.use_case.GetPopularCountries
+import com.devsu.streaming_domain.use_case.GetPopularTags
+import com.devsu.streaming_domain.use_case.SearchRadioList
 import com.devsu.streaming_domain.use_case.GetUsers
 import com.devsu.streaming_domain.use_case.SetCurrentUser
 import dagger.Module
@@ -47,9 +49,23 @@ object StreamingDomainModule {
     @Provides
     fun provideGetRadioListByTag(
         repository: RadioRepository
-    ): GetRadioListByTag{
-        return GetRadioListByTag(
+    ): SearchRadioList{
+        return SearchRadioList(
             repository
         )
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetPopularTags(
+    ): GetPopularTags{
+        return GetPopularTags()
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetPopularCountries(
+    ): GetPopularCountries{
+        return GetPopularCountries()
     }
 }

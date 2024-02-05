@@ -1,6 +1,7 @@
 package com.devsu.streaming_data.mapper
 
 import android.webkit.URLUtil
+import com.devsu.core.getValueOrNull
 import com.devsu.streaming_data.remote.dto.radio.RadioDto
 import com.devsu.streaming_domain.model.Radio
 
@@ -14,7 +15,7 @@ class RadioDtoMapper {
             homepage = model.homepage,
             favicon = getValidUrl(model.favicon),
             tags = getTagList(model.tags),
-            countrycode = model.countrycode,
+            countrycode = model.countrycode?.getValueOrNull(),
             state = model.state,
             language = model.language ?: "unknown",
             votes = model.votes ?: 0L,

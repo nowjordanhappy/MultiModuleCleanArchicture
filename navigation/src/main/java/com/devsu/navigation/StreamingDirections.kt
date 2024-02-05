@@ -10,6 +10,8 @@ object StreamingDirections {
     const val KEY_RADIO_FAVICON = "radioFavicon"
     const val KEY_RADIO_TAG_LIST = "radioTagList"
     const val KEY_RADIO_URL_RESOLVED = "radioUrlResolved"
+    const val KEY_RADIO_SEARCH_KEY = "radioSearchKey"
+    const val KEY_RADIO_SEARCH_VALUE = "radioSearchValue"
 
     private const val DEFAULT_NULL_VALUE = "null"
 
@@ -19,16 +21,30 @@ object StreamingDirections {
         override val route: String = destination
     }
 
+    val RadioMain = object : NavigationCommand {
+        override val arguments = emptyList<NamedNavArgument>()
+        override val destination = "radio_main"
+        override val route: String = destination
+    }
+
     val ChooseYourProfile = object : NavigationCommand {
         override val arguments = emptyList<NamedNavArgument>()
         override val destination = "choose_your_profile"
         override val route: String = destination
     }
 
-    val RadioByTag = object : NavigationCommand {
-        override val arguments = emptyList<NamedNavArgument>()
-        override val destination = "radio_by_tag"
-        override val route: String = destination
+    fun searchRadio(
+        key: String? = null,
+        value: String? = null
+    ) = object : NavigationCommand {
+        override val arguments = listOf(
+            navArgument(KEY_RADIO_SEARCH_KEY) { type = NavType.StringType},
+            navArgument(KEY_RADIO_SEARCH_VALUE) { type = NavType.StringType}
+        )
+
+        override val route: String = "search_radio/{$KEY_RADIO_SEARCH_KEY}/{$KEY_RADIO_SEARCH_VALUE}"
+
+        override val destination = "search_radio/$key/$value"
     }
 
     fun radioPlayer(

@@ -24,8 +24,9 @@ import androidx.navigation.compose.rememberNavController
 import com.devsu.navigation.NavigationCommandSegment
 import com.devsu.navigation.StreamingDirections
 import com.devsu.streaming_ui_tv.choose_your_profile.ChooseYourProfile
+import com.devsu.streaming_ui_tv.radio.main.RadioMainScreen
 import com.devsu.streaming_ui_tv.radio.radio_player.RadioPlayerScreen
-import com.devsu.streaming_ui_tv.radio.radio_by_tag.RadioByTagScreen
+import com.devsu.streaming_ui_tv.radio.search_radio.RadioByTagScreen
 import com.devsu.streaming_ui_tv.theme.StreamingUiMobileTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -64,16 +65,6 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     }
-                    //viewModel.navigationCommands.collectAsState(initial = StreamingDirections.Default).value.also { command ->
-                    /*viewModel.navigationCommands.collect().onEa
-
-                        if (command.destination.isNotEmpty()) {
-                            navController.navigate(command.destination){
-
-                            }
-                        }
-                    }*/
-
                     val snackbarHostState = remember { SnackbarHostState() }
                     val lifecycleOwner = LocalLifecycleOwner.current
 
@@ -95,7 +86,11 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
 
-                            composable(StreamingDirections.RadioByTag.destination) {
+                            composable(StreamingDirections.RadioMain.destination) {
+                                RadioMainScreen()
+                            }
+
+                            composable(StreamingDirections.searchRadio().route, arguments = StreamingDirections.searchRadio().arguments) {
                                 RadioByTagScreen(
                                     scaffoldState = snackbarHostState
                                 )

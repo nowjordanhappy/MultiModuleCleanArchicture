@@ -14,3 +14,5 @@ val BackgroundDefault = Color(0xFF141414)
 val DarkGray = Color(0xFF3b3b3b)
 val DarkPurple = Color(0xFF301934)
 val DarkBlue = Color(0xFF0C2D48)
+
+val DarkBlueTag = Color(0xFF010048)

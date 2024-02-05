@@ -1,9 +1,9 @@
-package com.devsu.streaming_ui_tv.radio.radio_by_tag
+package com.devsu.streaming_ui_tv.radio.search_radio
 
 import com.devsu.core_ui.model.ProgressBarState
 import com.devsu.streaming_domain.model.Radio
 
-data class RadioByTagState(
+data class SearchRadioListState(
     val progressBarState: ProgressBarState = ProgressBarState.Idle,
     val radioList: List<Radio> = emptyList(),
     val page: Int = 1,

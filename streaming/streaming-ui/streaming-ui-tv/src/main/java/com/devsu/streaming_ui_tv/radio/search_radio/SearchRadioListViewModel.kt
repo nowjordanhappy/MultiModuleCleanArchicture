@@ -1,4 +1,4 @@
-package com.devsu.streaming_ui_tv.radio.radio_by_tag
+package com.devsu.streaming_ui_tv.radio.search_radio
 
 import android.net.Uri
 import android.util.Log
@@ -11,11 +11,11 @@ import androidx.lifecycle.viewModelScope
 import com.devsu.core_ui.model.DataState
 import com.devsu.core_ui.model.UIComponent
 import com.devsu.core_ui.utils.ManagerConnection
-import com.devsu.navigation.NavigationCommand
 import com.devsu.navigation.NavigationCommandSegment
 import com.devsu.navigation.NavigationManager
 import com.devsu.navigation.StreamingDirections
-import com.devsu.streaming_domain.use_case.GetRadioListByTag
+import com.devsu.streaming_domain.model.SearchRadioListParam
+import com.devsu.streaming_domain.use_case.SearchRadioList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.launchIn
@@ -24,38 +24,42 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import java.nio.charset.StandardCharsets
 import javax.inject.Inject
 
-const val ARG_TAG = "ARG_TAG"
-
 @HiltViewModel
-class RadioByTagViewModel @Inject constructor(
+class SearchRadioListViewModel @Inject constructor(
     private val navigationManager: NavigationManager,
     private val savedStateHandle: SavedStateHandle,
-    private val getRadioListByTag: GetRadioListByTag,
+    private val searchRadioList: SearchRadioList,
     private val managerConnection: ManagerConnection
 ): ViewModel() {
-    var state by mutableStateOf(RadioByTagState())
+    var state by mutableStateOf(SearchRadioListState())
 
     private val _uiEvent = Channel<RadioListUiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
-        if(savedStateHandle.contains(ARG_TAG)){
-            savedStateHandle.get<String>(ARG_TAG)?.let { tag ->
-                onEvent(RadioByTagEvent.OnGetRadioList(tag = tag))
+        var searchKey: String? = null
+        var searchValue: String? = null
+        if(savedStateHandle.contains(StreamingDirections.KEY_RADIO_SEARCH_KEY)){
+            savedStateHandle.get<String>(StreamingDirections.KEY_RADIO_SEARCH_KEY)?.let { key ->
+                searchKey = key
             }
-        }else{
-            onEvent(RadioByTagEvent.OnGetRadioList(tag = "#90"))
         }
+        if(savedStateHandle.contains(StreamingDirections.KEY_RADIO_SEARCH_VALUE)){
+            savedStateHandle.get<String>(StreamingDirections.KEY_RADIO_SEARCH_VALUE)?.let { key ->
+                searchValue = key
+            }
+        }
+        onEvent(SearchRadioListEvent.OnSearchRadioList(searchKey, searchValue))
     }
 
-    fun onEvent(event: RadioByTagEvent){
+    fun onEvent(event: SearchRadioListEvent){
         when(event){
-            is RadioByTagEvent.OnGetRadioList -> onGetRadioList(event)
-            is RadioByTagEvent.OnNavigateToToRadioPlayer -> onNavigateToToRadioPlayer(event)
+            is SearchRadioListEvent.OnSearchRadioList -> onGetRadioList(event)
+            is SearchRadioListEvent.OnNavigateToToRadioPlayer -> onNavigateToToRadioPlayer(event)
         }
     }
 
-    private fun onNavigateToToRadioPlayer(event: RadioByTagEvent.OnNavigateToToRadioPlayer) {
+    private fun onNavigateToToRadioPlayer(event: SearchRadioListEvent.OnNavigateToToRadioPlayer) {
         val command = StreamingDirections.radioPlayer(
             stationuuid = event.radio.stationuuid,
             name = event.radio.name,
@@ -69,10 +73,16 @@ class RadioByTagViewModel @Inject constructor(
         )
     }
 
-    private fun onGetRadioList(event: RadioByTagEvent.OnGetRadioList) {
-        getRadioListByTag
+    private fun onGetRadioList(event: SearchRadioListEvent.OnSearchRadioList) {
+        Log.v("JordanRA", "onGetRadioList")
+        var params: Map<SearchRadioListParam, Any> = mapOf()
+        if(event.key != null && event.value != null){
+            params = mapOf(SearchRadioListParam.fromString(event.key) to event.value.lowercase())
+        }
+
+        searchRadioList
             .execute(
-                tag = event.tag,
+                params = params,
                 limit = state.limit,
                 page = state.page,
                 isNetworkAvailable = managerConnection.isNetworkAvailable()

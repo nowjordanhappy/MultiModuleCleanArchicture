@@ -2,6 +2,7 @@ import com.devsu.buildsrc.Modules
 import com.devsu.buildsrc.Coil
 import com.devsu.buildsrc.Compose
 import com.devsu.buildsrc.ExoPlayer
+import com.devsu.buildsrc.FlagKit
 
 apply {
     from("$rootDir/streaming-ui-tv-module.gradle")
@@ -25,4 +26,6 @@ dependencies {
     "implementation"(ExoPlayer.exoPlayer)
     "implementation"(ExoPlayer.exoPlayerUi)
     "implementation"(ExoPlayer.exoplayerHls)
+
+    "implementation"(FlagKit.flagKit)
 }

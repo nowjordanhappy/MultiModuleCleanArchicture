@@ -74,7 +74,7 @@ class ChooseYourProfileViewModel @Inject constructor(
     private fun onNavigateToMain() {
         navigationManager.navigate(
             NavigationCommandSegment.BuilderNavigation(
-                StreamingDirections.RadioByTag
+                StreamingDirections.RadioMain
             ){
                 popUpTo(StreamingDirections.ChooseYourProfile.route){
                     inclusive = true

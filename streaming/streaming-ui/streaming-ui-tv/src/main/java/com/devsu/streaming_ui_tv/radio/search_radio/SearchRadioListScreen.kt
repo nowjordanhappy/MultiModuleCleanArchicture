@@ -1,4 +1,4 @@
-package com.devsu.streaming_ui_tv.radio.radio_by_tag
+package com.devsu.streaming_ui_tv.radio.search_radio
 
 import android.util.Log
 import androidx.compose.foundation.layout.Column
@@ -16,7 +16,7 @@ import com.devsu.streaming_ui_tv.radio.components.RadioList
 @Composable
 fun RadioByTagScreen(
     scaffoldState: SnackbarHostState,
-    viewModel: RadioByTagViewModel = hiltViewModel()
+    viewModel: SearchRadioListViewModel = hiltViewModel()
 ) {
     val state = viewModel.state
 
@@ -32,7 +32,7 @@ fun RadioByTagScreen(
                 onSelectItem = { radio ->
                     Log.v("JordanRA", "StreamingDirections.radioPlayer().route: ${StreamingDirections.radioPlayer().route}")
                     Log.v("TV", "RadioList onClick: ${radio.name}")
-                    viewModel.onEvent(RadioByTagEvent.OnNavigateToToRadioPlayer(radio))
+                    viewModel.onEvent(SearchRadioListEvent.OnNavigateToToRadioPlayer(radio))
                 }
             )
 
