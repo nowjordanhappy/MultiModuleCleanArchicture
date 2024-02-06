@@ -76,6 +76,9 @@ class SearchRadioListViewModel @Inject constructor(
     private fun onGetRadioList(event: SearchRadioListEvent.OnSearchRadioList) {
         Log.v("JordanRA", "onGetRadioList")
         var params: Map<SearchRadioListParam, Any> = mapOf()
+        state = state.copy(
+            title = event.value?.uppercase()
+        )
         if(event.key != null && event.value != null){
             params = mapOf(SearchRadioListParam.fromString(event.key) to event.value.lowercase())
         }

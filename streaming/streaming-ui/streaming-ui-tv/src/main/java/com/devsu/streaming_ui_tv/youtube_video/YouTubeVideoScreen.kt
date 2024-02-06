@@ -1,4 +1,4 @@
-package com.devsu.streaming_ui_tv.radio.search_radio
+package com.devsu.streaming_ui_tv.youtube_video
 
 import android.util.Log
 import androidx.compose.foundation.layout.Column
@@ -18,11 +18,12 @@ import com.devsu.streaming_ui_tv.components.LoadingView
 import com.devsu.streaming_ui_tv.components.TvContainer
 import com.devsu.streaming_ui_tv.radio.components.RadioList
 import com.devsu.streaming_ui_tv.radio.main.components.Section
+import com.devsu.streaming_ui_tv.youtube_video.components.YouTubeVideoList
 
 @Composable
-fun SearchRadioListScreen(
+fun YouTubeVideoScreen(
     scaffoldState: SnackbarHostState,
-    viewModel: SearchRadioListViewModel = hiltViewModel()
+    viewModel: YouTubeVideoViewModel = hiltViewModel()
 ) {
     val state = viewModel.state
 
@@ -32,7 +33,7 @@ fun SearchRadioListScreen(
     ) {
         Column (horizontalAlignment = Alignment.CenterHorizontally){
             Section(
-                title = state.title ?: "Radio List",
+                title = state.channelName ?: "Channel Video",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 50.dp)
@@ -40,13 +41,13 @@ fun SearchRadioListScreen(
             )
 
             if(state.progressBarState == ProgressBarState.Idle){
-                RadioList(
+                YouTubeVideoList(
                     modifier = Modifier.fillMaxSize(),
-                    items = state.radioList,
-                    onSelectItem = { radio ->
-                        Log.v("JordanRA", "StreamingDirections.radioPlayer().route: ${StreamingDirections.radioPlayer().route}")
-                        Log.v("TV", "RadioList onClick: ${radio.name}")
-                        viewModel.onEvent(SearchRadioListEvent.OnNavigateToToRadioPlayer(radio))
+                    items = state.youTubeVideos,
+                    onSelectItem = { video ->
+                        Log.v("JordanRA", "route: ${StreamingDirections.radioPlayer().route}")
+                        Log.v("TV", "YouTubeVideoList onClick: ${video.title}")
+                        viewModel.onEvent(YouTubeVideoEvent.OnNavigateToYouTubePlayer(video))
                     }
                 )
             }else{

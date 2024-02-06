@@ -2,11 +2,14 @@ package com.devsu.streaming_domain.di
 
 import com.devsu.streaming_domain.repository.RadioRepository
 import com.devsu.streaming_domain.repository.UserRepository
+import com.devsu.streaming_domain.repository.YouTubeVideoRepository
 import com.devsu.streaming_domain.use_case.GetCurrentUser
 import com.devsu.streaming_domain.use_case.GetPopularCountries
 import com.devsu.streaming_domain.use_case.GetPopularTags
+import com.devsu.streaming_domain.use_case.GetPopularYouTubeChannels
 import com.devsu.streaming_domain.use_case.SearchRadioList
 import com.devsu.streaming_domain.use_case.GetUsers
+import com.devsu.streaming_domain.use_case.GetYouTubeVideos
 import com.devsu.streaming_domain.use_case.SetCurrentUser
 import dagger.Module
 import dagger.Provides
@@ -67,5 +70,20 @@ object StreamingDomainModule {
     fun provideGetPopularCountries(
     ): GetPopularCountries{
         return GetPopularCountries()
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetPopularYouTubeChannels(
+    ): GetPopularYouTubeChannels{
+        return GetPopularYouTubeChannels()
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetYouTubeVideos(
+        repository: YouTubeVideoRepository
+    ): GetYouTubeVideos{
+        return GetYouTubeVideos(repository)
     }
 }

@@ -6,6 +6,7 @@ import com.devsu.buildsrc.Retrofit
 import com.devsu.buildsrc.Fragment
 import com.devsu.buildsrc.Leanback
 import com.devsu.buildsrc.Compose
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
     id(com.devsu.buildsrc.Plugins.androidApplication)
@@ -25,6 +26,7 @@ android {
         versionCode = ProjectConfig.versionCode
         versionName = ProjectConfig.versionName
 
+        buildConfigField("String", "YOUTUBE_API_KEY", gradleLocalProperties(rootDir).getProperty("youtube.key"))
     }
 
     buildFeatures {

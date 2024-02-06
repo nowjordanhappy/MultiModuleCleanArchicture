@@ -1,0 +1,37 @@
+package com.devsu.streaming_ui_tv.youtube_video.components
+
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.tv.foundation.lazy.grid.TvGridCells
+import androidx.tv.foundation.lazy.grid.TvLazyVerticalGrid
+import androidx.tv.foundation.lazy.grid.items
+import com.devsu.streaming_domain.model.Radio
+import com.devsu.streaming_domain.model.YouTubeVideo
+
+@Composable
+fun YouTubeVideoList(
+    modifier: Modifier = Modifier,
+    items: List<YouTubeVideo>,
+    onSelectItem: (YouTubeVideo)->Unit
+) {
+    TvLazyVerticalGrid(
+        columns = TvGridCells.Fixed(3),
+        modifier = modifier,
+        contentPadding = PaddingValues(horizontal = 40.dp, vertical = 20.dp)
+    ){
+        items(items = items, key = {it.videoId}){ video ->
+            YouTubeVideoItem(
+                modifier = Modifier.padding(10.dp)
+                    .height(300.dp),
+                video = video, onClick = {
+                onSelectItem.invoke(video)
+            })
+        }
+    }
+}

@@ -12,6 +12,8 @@ object StreamingDirections {
     const val KEY_RADIO_URL_RESOLVED = "radioUrlResolved"
     const val KEY_RADIO_SEARCH_KEY = "radioSearchKey"
     const val KEY_RADIO_SEARCH_VALUE = "radioSearchValue"
+    const val KEY_YOUTUBE_CHANNEL_ID = "youtubeChannelId"
+    const val KEY_YOUTUBE_CHANNEL_NAME = "youtubeChannelName"
 
     private const val DEFAULT_NULL_VALUE = "null"
 
@@ -66,5 +68,19 @@ object StreamingDirections {
 
             override val destination = "radio_player/$stationuuid/$name/$favicon/${urlResolved}"///${tagList.joinToString(",")}"
         }
+
+    fun youTubeVideo(
+        channelId: String? = null,
+        channelName: String? = null
+    )= object : NavigationCommand {
+        override val route = "youtube_video/{$KEY_YOUTUBE_CHANNEL_ID}/{$KEY_YOUTUBE_CHANNEL_NAME}"
+
+        override val arguments = listOf(
+            navArgument(KEY_YOUTUBE_CHANNEL_ID) { type = NavType.StringType },
+            navArgument(KEY_YOUTUBE_CHANNEL_NAME) { type = NavType.StringType },
+        )
+
+        override val destination = "youtube_video/$channelId/$channelName"
+    }
 
 }

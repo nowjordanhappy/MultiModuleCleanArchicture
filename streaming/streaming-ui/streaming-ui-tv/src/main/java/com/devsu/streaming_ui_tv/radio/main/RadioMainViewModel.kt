@@ -12,6 +12,7 @@ import com.devsu.streaming_domain.model.SearchRadioListParam
 import com.devsu.streaming_domain.use_case.GetCurrentUser
 import com.devsu.streaming_domain.use_case.GetPopularCountries
 import com.devsu.streaming_domain.use_case.GetPopularTags
+import com.devsu.streaming_domain.use_case.GetPopularYouTubeChannels
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -23,6 +24,7 @@ class RadioMainViewModel @Inject constructor(
     private val getCurrentUser: GetCurrentUser,
     private val getPopularTags: GetPopularTags,
     private val getPopularCountries: GetPopularCountries,
+    private val getPopularYouTubeChannels: GetPopularYouTubeChannels,
 ): ViewModel() {
     var state by mutableStateOf(RadioMainState())
 
@@ -30,6 +32,7 @@ class RadioMainViewModel @Inject constructor(
         onEvent(RadioMainEvent.OnGetCurrentUser)
         onEvent(RadioMainEvent.OnGetPopularTags)
         onEvent(RadioMainEvent.OnGetPopularCountries)
+        onEvent(RadioMainEvent.OnGetPopularYouTubeChannels)
     }
 
     fun onEvent(event: RadioMainEvent){
@@ -37,9 +40,22 @@ class RadioMainViewModel @Inject constructor(
             RadioMainEvent.OnGetCurrentUser -> onGetCurrentUser()
             RadioMainEvent.OnGetPopularTags -> onGetPopularTags()
             RadioMainEvent.OnGetPopularCountries -> onGetPopularCountries()
+            RadioMainEvent.OnGetPopularYouTubeChannels -> onGetPopularYouTubeChannels()
             is RadioMainEvent.OnNavigateToRadioListByTag -> onNavigateToRadioListByTag(event)
             is RadioMainEvent.OnNavigateToRadioListByCountry -> onNavigateToRadioListByCountry(event)
+            is RadioMainEvent.OnNavigateToYouTubeVideo -> onNavigateToYouTubeVideo(event)
         }
+    }
+
+    private fun onGetPopularYouTubeChannels() {
+        getPopularYouTubeChannels
+            .execute()
+            .onEach { youtubeChannels ->
+                state = state.copy(
+                    popularYouTubeChannels = youtubeChannels
+                )
+            }
+            .launchIn(viewModelScope)
     }
 
     private fun onNavigateToRadioListByCountry(event: RadioMainEvent.OnNavigateToRadioListByCountry) {
@@ -59,6 +75,18 @@ class RadioMainViewModel @Inject constructor(
                 StreamingDirections.searchRadio(
                     key = SearchRadioListParam.TagList.param,
                     value = event.tag
+                )
+            )
+        )
+    }
+
+    private fun onNavigateToYouTubeVideo(event: RadioMainEvent.OnNavigateToYouTubeVideo) {
+        if(event.youTubeChannel.channelId.isBlank())return
+        navigationManager.navigate(
+            NavigationCommandSegment.DefaultNavigation(
+                StreamingDirections.youTubeVideo(
+                    channelId = event.youTubeChannel.channelId,
+                    channelName = event.youTubeChannel.name
                 )
             )
         )

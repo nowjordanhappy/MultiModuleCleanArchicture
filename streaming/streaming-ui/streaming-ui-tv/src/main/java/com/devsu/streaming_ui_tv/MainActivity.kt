@@ -26,8 +26,9 @@ import com.devsu.navigation.StreamingDirections
 import com.devsu.streaming_ui_tv.choose_your_profile.ChooseYourProfile
 import com.devsu.streaming_ui_tv.radio.main.RadioMainScreen
 import com.devsu.streaming_ui_tv.radio.radio_player.RadioPlayerScreen
-import com.devsu.streaming_ui_tv.radio.search_radio.RadioByTagScreen
+import com.devsu.streaming_ui_tv.radio.search_radio.SearchRadioListScreen
 import com.devsu.streaming_ui_tv.theme.StreamingUiMobileTheme
+import com.devsu.streaming_ui_tv.youtube_video.YouTubeVideoScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @UnstableApi @OptIn(ExperimentalMaterial3Api::class)
@@ -91,58 +92,23 @@ class MainActivity : ComponentActivity() {
                             }
 
                             composable(StreamingDirections.searchRadio().route, arguments = StreamingDirections.searchRadio().arguments) {
-                                RadioByTagScreen(
+                                SearchRadioListScreen(
                                     scaffoldState = snackbarHostState
                                 )
                             }
-                            composable(StreamingDirections.radioPlayer().route, arguments = StreamingDirections.radioPlayer().arguments) { backStackEntry->
-                                val stationuuid = backStackEntry.arguments?.getString(StreamingDirections.KEY_RADIO_STATION_UUID)
-                                val name = backStackEntry.arguments?.getString(StreamingDirections.KEY_RADIO_NAME)
-                                val favicon = backStackEntry.arguments?.getString(StreamingDirections.KEY_RADIO_FAVICON)
-                                val urlResolved = backStackEntry.arguments?.getString(StreamingDirections.KEY_RADIO_URL_RESOLVED)
-                                //val tagList = backStackEntry.arguments?.getStringArray(StreamingDirections.KEY_RADIO_TAG_LIST)?.toList()
-
-                                Log.v("JordanRA", "stationuuid: $stationuuid - name: $name - favicon: $favicon - urlResolved: $urlResolved")
-
+                            composable(StreamingDirections.radioPlayer().route, arguments = StreamingDirections.radioPlayer().arguments) {
                                 RadioPlayerScreen(
                                     scaffoldState = snackbarHostState,
                                     lifecycleOwner = lifecycleOwner,
                                 )
                             }
+                            composable(StreamingDirections.youTubeVideo().route, arguments = StreamingDirections.youTubeVideo().arguments) {
+                                YouTubeVideoScreen(
+                                    scaffoldState = snackbarHostState,
+                                )
+                            }
                         }
                     }
-
-
-                    /*Scaffold(
-                        modifier = Modifier.fillMaxSize(),
-                        snackbarHost = {
-                            SnackbarHost(snackbarHostState)
-                        }
-                    ) { _ ->
-
-
-                    }*/
-
-                        /*val snackbarHostState = remember { SnackbarHostState() }
-                        val lifecycleOwner = LocalLifecycleOwner.current
-                        Scaffold(
-                            modifier = Modifier.fillMaxSize(),
-                            snackbarHost = {
-                                SnackbarHost(snackbarHostState)
-                            }
-                        ){ _ ->
-
-
-                            /*RadioPlayerScreen(
-                                lifecycleOwner = lifecycleOwner
-                            )*/
-                            RadioByTag(scaffoldState = snackbarHostState)
-                            //RadioMainScreen()
-                            //YouTubeVideoPlayer(videoId = "Q4hMNpNZoLk", context = LocalContext.current)
-                            /*ChooseYourProfile(
-                                scaffoldState = snackbarHostState
-                            )*/
-                        }*/
                 }
             }
         }
