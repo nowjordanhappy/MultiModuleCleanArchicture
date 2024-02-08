@@ -29,6 +29,7 @@ import com.devsu.streaming_ui_tv.radio.radio_player.RadioPlayerScreen
 import com.devsu.streaming_ui_tv.radio.search_radio.SearchRadioListScreen
 import com.devsu.streaming_ui_tv.theme.StreamingUiMobileTheme
 import com.devsu.streaming_ui_tv.youtube_video.YouTubeVideoScreen
+import com.devsu.streaming_ui_tv.youtube_video_player.YouTubeVideoPlayerScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @UnstableApi @OptIn(ExperimentalMaterial3Api::class)
@@ -102,8 +103,14 @@ class MainActivity : ComponentActivity() {
                                     lifecycleOwner = lifecycleOwner,
                                 )
                             }
+
                             composable(StreamingDirections.youTubeVideo().route, arguments = StreamingDirections.youTubeVideo().arguments) {
                                 YouTubeVideoScreen(
+                                    scaffoldState = snackbarHostState,
+                                )
+                            }
+                            composable(StreamingDirections.youTubeVideoPlayer().route, arguments = StreamingDirections.youTubeVideoPlayer().arguments) {
+                                YouTubeVideoPlayerScreen(
                                     scaffoldState = snackbarHostState,
                                 )
                             }

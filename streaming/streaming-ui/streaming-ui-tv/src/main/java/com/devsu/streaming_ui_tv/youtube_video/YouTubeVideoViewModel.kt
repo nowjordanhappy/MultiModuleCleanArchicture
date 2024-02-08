@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.devsu.core_ui.model.DataState
 import com.devsu.core_ui.model.UIComponent
 import com.devsu.core_ui.utils.ManagerConnection
+import com.devsu.navigation.NavigationCommandSegment
 import com.devsu.navigation.NavigationManager
 import com.devsu.navigation.StreamingDirections
 import com.devsu.streaming_domain.use_case.GetYouTubeVideos
@@ -95,7 +96,14 @@ class YouTubeVideoViewModel @Inject constructor(
     }
 
     private fun onNavigateToYouTubePlayer(event: YouTubeVideoEvent.OnNavigateToYouTubePlayer) {
-
+        navigationManager.navigate(
+            NavigationCommandSegment.DefaultNavigation(
+                StreamingDirections.youTubeVideoPlayer(
+                    videoId = event.video.videoId,
+                    videoTitle = event.video.title
+                )
+            )
+        )
     }
 }
 

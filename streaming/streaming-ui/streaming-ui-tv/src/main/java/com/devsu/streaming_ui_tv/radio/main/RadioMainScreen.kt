@@ -8,7 +8,9 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,13 +24,20 @@ import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.TileMode
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -79,9 +88,10 @@ fun RadioMainScreen(
                                 model = ImageRequest.Builder(LocalContext.current)
                                     .data(state.popularYouTubeChannels[index].background)
                                     .build(),
-                                contentDescription = "Name title",
+                                contentDescription = state.popularYouTubeChannels[index].name,
                                 contentScale = ContentScale.FillHeight ,
-                                modifier = Modifier.fillMaxSize()
+                                modifier = Modifier
+                                    .fillMaxSize()
                                     .align(Alignment.BottomEnd),
                                 alignment = Alignment.BottomEnd
                             )
@@ -93,7 +103,6 @@ fun RadioMainScreen(
                                 alignment = Alignment.BottomStart,
                                 contentScale = ContentScale.FillWidth
                             )
-
 
                             ContentBlock(
                                 index = state.popularYouTubeChannels[index],
@@ -266,6 +275,22 @@ fun ContentBlock(index: YouTubeChannel, modifier: Modifier) {
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
+        }
+    }
+}
+
+@Composable
+fun CustomVector(modifier: Modifier = Modifier, size: Dp, color1: Color, color2: Color) {
+    Canvas(modifier = modifier.size(size)) {
+        drawIntoCanvas { canvas ->
+            val brush = Brush.radialGradient(
+                0.0f to color1,
+                0.71f to color2,
+                center = center,
+                radius = size.toPx() / 2,
+                tileMode = TileMode.Repeated
+            )
+            //canvas.nativeCanvas.drawPaint(brush)
         }
     }
 }

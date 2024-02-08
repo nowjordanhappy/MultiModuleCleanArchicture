@@ -54,21 +54,25 @@ fun YouTubeVideoItem(
             YouTubeVideoImage(video.thumbnail?.let { Uri.parse(it) } ?: kotlin.run { null })
             Column (
                 modifier = Modifier.padding(horizontal = 10.dp, vertical = 10.dp)
-            ){
-                Text(text = video.title, maxLines = 2, overflow = TextOverflow.Ellipsis,
-                    style = TextStyle.Default.copy(
-                        fontWeight = FontWeight.Bold
-                    ))
-                if(!video.description.isNullOrBlank())Text(text = video.description, maxLines = 3, overflow = TextOverflow.Ellipsis,
+            ) {
+                if (video.datePublished.isNotBlank()) Text(
+                    text = video.datePublished, maxLines = 1, overflow = TextOverflow.Ellipsis,
                     style = TextStyle.Default.copy(
                         color = Color.DarkGray
-                    ))else{
-                    Text(text = video.datePublished, maxLines = 1, overflow = TextOverflow.Ellipsis,
-                        style = TextStyle.Default.copy(
-                            color = Color.DarkGray
-                        )
                     )
-                }
+                )
+                Text(
+                    text = video.title, maxLines = 2, overflow = TextOverflow.Ellipsis,
+                    style = TextStyle.Default.copy(
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+                if (!video.description.isNullOrBlank()) Text(
+                    text = video.description, maxLines = 3, overflow = TextOverflow.Ellipsis,
+                    style = TextStyle.Default.copy(
+                        color = Color.DarkGray
+                    )
+                )
             }
         }
     }
