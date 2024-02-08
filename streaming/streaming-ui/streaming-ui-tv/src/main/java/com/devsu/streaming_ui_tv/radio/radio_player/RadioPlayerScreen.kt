@@ -34,6 +34,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -42,7 +43,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.LifecycleOwner
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
-import androidx.media3.common.Metadata
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
@@ -51,6 +51,7 @@ import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.tv.material3.Button
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.Text
+import com.devsu.streaming_ui_tv.R
 import com.devsu.streaming_ui_tv.radio.components.RadioImage
 import com.devsu.streaming_ui_tv.util.conditional
 
@@ -63,9 +64,18 @@ fun RadioPlayerScreen(
 ) {
     val state = viewModel.state
 
+    LaunchedEffect(key1 = true){
+        viewModel.uiEvent.collect{ event->
+            when(event){
+                is RadioPlayerUiEvent.ShowError -> {
+                    scaffoldState.showSnackbar(event.message)
+                }
+            }
+        }
+    }
+
     val context = LocalContext.current
 
-    Log.v("JordanRA", "trying to play1: urlResolved: ${state.urlResolved}")
     state.urlResolved?.let { urlResolved->
         val exoPlayer = remember {
             ExoPlayer.Builder(context)
@@ -73,17 +83,17 @@ fun RadioPlayerScreen(
                 .build() }
 
         LaunchedEffect(key1 = Unit) {
-
-            Log.v("JordanRA", "trying to play: urlResolved: $urlResolved")
             val mediaItem = MediaItem.fromUri(urlResolved)
-            //val mediaItem = MediaItem.fromUri("https://servidor19.brlogic.com:7300/live")
-            //val mediaItem = MediaItem.fromUri(Uri.parse("https://servidor19.brlogic.com:7300/live"))
-
             exoPlayer.setMediaItem(mediaItem)
 
-            val listener = playbackStateListener{ mediaMetadata->
-                viewModel.onEvent(RadioPlayerEvent.OnSetMediaMetadata(mediaMetadata))
-            }
+            val listener = playbackStateListener(
+                onRadioPlayerMetadataChanged = { mediaMetadata->
+                    viewModel.onEvent(RadioPlayerEvent.OnSetMediaMetadata(mediaMetadata))
+                },
+                onRadioPlayerError = {
+                    viewModel.onEvent(RadioPlayerEvent.OnShowError(it.message ?: context.getString(com.devsu.core_ui.R.string.unknown_error)))
+                }
+            )
             exoPlayer.addListener(listener)
 
             exoPlayer.repeatMode = Player.REPEAT_MODE_ONE
@@ -111,8 +121,6 @@ fun RadioPlayerScreen(
                 )
 
                 val configuration = LocalConfiguration.current
-
-                Log.v("JordanRA", "width: ${configuration.screenWidthDp}")
 
                 Spacer(modifier = Modifier.height(5.dp))
 
@@ -164,7 +172,10 @@ fun RadioPlayerScreen(
                 }) {
                     Icon(if (state.playWhenReady) Icons.Default.Pause else
                         Icons.Default.PlayArrow,
-                        contentDescription = if (state.isPlaying) "Pause" else "Play")
+                        contentDescription = if (state.isPlaying) stringResource(R.string.pause) else stringResource(
+                            R.string.play
+                        )
+                    )
                 }
             }
 
@@ -182,25 +193,17 @@ fun RadioPlayerScreen(
         }
 
         DisposableEffect(key1 = lifecycleOwner) {
-            /*val observer = LifecycleEventObserver { _, event ->
-                if (event == Lifecycle.Event.ON_RESUME) {
-                    exoPlayer.playWhenReady = true
-                    isPlaying = true
-                } else if (event == Lifecycle.Event.ON_PAUSE) {
-                    exoPlayer.playWhenReady = false
-                    isPlaying = false
-                }
-            }*/
-            //lifecycleOwner.lifecycle.addObserver(observer)
             onDispose {
-                //lifecycleOwner.lifecycle.removeObserver(observer)
                 exoPlayer.release()
             }
         }
     }
 }
 
-private fun playbackStateListener(updateMetadataHandler: ((MediaMetadata)->Unit)) = @UnstableApi object : Player.Listener {
+private fun playbackStateListener(
+    onRadioPlayerMetadataChanged: ((MediaMetadata)->Unit),
+    onRadioPlayerError: (PlaybackException)-> Unit,
+    ) = @UnstableApi object : Player.Listener {
     override fun onPlaybackStateChanged(playbackState: Int) {
         val stateString: String = when (playbackState) {
             ExoPlayer.STATE_IDLE -> "ExoPlayer.STATE_IDLE      -"
@@ -214,7 +217,7 @@ private fun playbackStateListener(updateMetadataHandler: ((MediaMetadata)->Unit)
 
     override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
         super.onMediaMetadataChanged(mediaMetadata)
-        updateMetadataHandler.invoke(mediaMetadata)
+        onRadioPlayerMetadataChanged.invoke(mediaMetadata)
         Log.d("JordanRA", "mediadata albumArtist: ${mediaMetadata.albumArtist}")
         Log.d("JordanRA", "mediadata albumTitle: ${mediaMetadata.albumTitle}")
         Log.d("JordanRA", "mediadata title: ${mediaMetadata.title}")
@@ -226,48 +229,9 @@ private fun playbackStateListener(updateMetadataHandler: ((MediaMetadata)->Unit)
         Log.d("JordanRA", "mediadata artworkDataType null: ${mediaMetadata.artworkDataType == null}")
     }
 
-    override fun onMetadata(mediaMetadata: Metadata) {
-        super.onMetadata(mediaMetadata)
-        Log.d("JordanRA", "onMetadata length: ${mediaMetadata.length()}")
-        if(mediaMetadata.length() > 0){
-            /*val entry = mediaMetadata.get(0)
-            // Check for ICY metadata (Shoutcast/Icecast)
-            if (entry is IcyInfo) {
-                Log.d("JordanRA", "onMetadata mediaMetadata IcyInfo")
-                val icyInfo = entry as IcyInfo
-                val title = icyInfo.title
-                val url = icyInfo.url
-                // Handle title and URL
-            }
-
-            // Check for ID3 metadata (e.g., for artwork)
-            if (entry is ApicFrame) {
-                Log.d("JordanRA", "onMetadata mediaMetadata ApicFrame")
-                val apicFrame = entry as ApicFrame
-                val mimeType = apicFrame.mimeType
-                val description = apicFrame.description
-                val imageBytes = apicFrame.pictureData
-                // Handle artwork data
-            }
-            Log.d("JordanRA", "onMetadata mediaMetadata: ${mediaMetadata[0]}")*/
-        }
-    }
-
-    override fun onPlaylistMetadataChanged(mediaMetadata: MediaMetadata) {
-        super.onPlaylistMetadataChanged(mediaMetadata)
-        /*Log.d("JordanRA", "onPlaylistMetadataChanged albumArtist: ${mediaMetadata.albumArtist}")
-        Log.d("JordanRA", "onPlaylistMetadataChanged albumTitle: ${mediaMetadata.albumTitle}")
-        Log.d("JordanRA", "onPlaylistMetadataChanged title: ${mediaMetadata.title}")
-        Log.d("JordanRA", "onPlaylistMetadataChanged subtitle: ${mediaMetadata.subtitle}")
-        Log.d("JordanRA", "onPlaylistMetadataChanged artist: ${mediaMetadata.artist}")
-        Log.d("JordanRA", "onPlaylistMetadataChanged genre: ${mediaMetadata.genre}")
-        Log.d("JordanRA", "onPlaylistMetadataChanged artworkUri null: ${mediaMetadata.artworkUri == null}")
-        Log.d("JordanRA", "onPlaylistMetadataChanged artworkData null: ${mediaMetadata.artworkData == null}")
-        Log.d("JordanRA", "onPlaylistMetadataChanged artworkDataType null: ${mediaMetadata.artworkDataType == null}")*/
-    }
-
     override fun onPlayerError(error: PlaybackException) {
         super.onPlayerError(error)
+        onRadioPlayerError.invoke(error)
         Log.d("JordanRA", "onPlayerError ${error.localizedMessage}")
     }
 }

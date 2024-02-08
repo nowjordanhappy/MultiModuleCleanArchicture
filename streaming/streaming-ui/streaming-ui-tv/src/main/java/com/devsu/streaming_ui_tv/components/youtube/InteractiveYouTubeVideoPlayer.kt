@@ -18,11 +18,9 @@ import androidx.tv.material3.Button
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 
-@OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun InteractiveYouTubeVideoPlayer(
     context: Context,
-    lifecycleOwner: LifecycleOwner,
     videoId: String,
     isPlaying: Boolean,
     onVideoError: (PlayerConstants.PlayerError) -> Unit = {},
@@ -30,7 +28,6 @@ fun InteractiveYouTubeVideoPlayer(
     Box(Modifier.fillMaxSize()) {
         YoutubeVideoPlayer(
             context = context,
-            lifecycleOwner = lifecycleOwner,
             modifier = Modifier
                 .fillMaxSize(),
             videoId = videoId,

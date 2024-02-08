@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,6 +20,7 @@ import com.devsu.streaming_ui_tv.components.TvContainer
 import com.devsu.streaming_ui_tv.radio.components.RadioList
 import com.devsu.streaming_ui_tv.radio.main.components.Section
 import com.devsu.streaming_ui_tv.youtube_video.components.YouTubeVideoList
+import com.devsu.streaming_ui_tv.youtube_video_player.YouTubeVideoPlayerUiEvent
 
 @Composable
 fun YouTubeVideoScreen(
@@ -26,6 +28,16 @@ fun YouTubeVideoScreen(
     viewModel: YouTubeVideoViewModel = hiltViewModel()
 ) {
     val state = viewModel.state
+
+    LaunchedEffect(key1 = true){
+        viewModel.uiEvent.collect{ event->
+            when(event){
+                is YouTubeVideoUiEvent.ShowError -> {
+                    scaffoldState.showSnackbar(event.message)
+                }
+            }
+        }
+    }
 
     TvContainer(
         modifier = Modifier,
@@ -45,8 +57,6 @@ fun YouTubeVideoScreen(
                     modifier = Modifier.fillMaxSize(),
                     items = state.youTubeVideos,
                     onSelectItem = { video ->
-                        Log.v("JordanRA", "route: ${StreamingDirections.radioPlayer().route}")
-                        Log.v("TV", "YouTubeVideoList onClick: ${video.title}")
                         viewModel.onEvent(YouTubeVideoEvent.OnNavigateToYouTubePlayer(video))
                     }
                 )

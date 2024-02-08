@@ -6,10 +6,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.devsu.navigation.StreamingDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -41,6 +43,7 @@ class YouTubeVideoPlayerViewModel @Inject constructor(
     fun onEvent(event: YouTubeVideoPlayerEvent){
         when(event){
             is YouTubeVideoPlayerEvent.OnSetInitialData -> onSetInitialData(event)
+            is YouTubeVideoPlayerEvent.OnShowError -> onShowError(event)
         }
     }
 
@@ -49,6 +52,12 @@ class YouTubeVideoPlayerViewModel @Inject constructor(
             videoId = event.videoId,
             videoTitle = event.videoTitle
         )
+    }
+
+    private fun onShowError(event: YouTubeVideoPlayerEvent.OnShowError) {
+        viewModelScope.launch {
+            _uiEvent.send(YouTubeVideoPlayerUiEvent.ShowError(event.message))
+        }
     }
 }
 

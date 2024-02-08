@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="who_s_watching">Who\'s watching?</string>
+    <string name="pause">Pause</string>
+    <string name="play">Play</string>
 </resources>

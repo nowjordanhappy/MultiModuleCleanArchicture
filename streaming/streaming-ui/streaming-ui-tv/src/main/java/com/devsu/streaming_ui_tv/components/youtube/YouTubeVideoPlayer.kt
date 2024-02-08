@@ -35,7 +35,6 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 @Composable
 fun YoutubeVideoPlayer(
     context: Context,
-    lifecycleOwner: LifecycleOwner,
     modifier: Modifier = Modifier,
     videoId: String,
     isPlaying: Boolean,
@@ -73,7 +72,8 @@ fun YoutubeVideoPlayer(
             .focusable(true)
             .focusRequester(focusRequester)
             .onKeyEvent { event ->
-                if (event.key == Key.DirectionCenter && event.type == KeyEventType.KeyDown) {
+                if (event.key == Key.DirectionCenter && event.type == KeyEventType.KeyUp) {
+                    Log.v("JordanRA", "event DirectionCenter")
                     if(defaultPlayerUiController?.isPlaying != true){
                         player?.play()
                     }else{
@@ -109,27 +109,4 @@ fun YoutubeVideoPlayer(
         }
         onDispose { player?.pause() }
     }
-
-    /*DisposableEffect(mLifeCycleOwner) {
-        val lifecycle = mLifeCycleOwner.value.lifecycle
-        val observer = LifecycleEventObserver { _, event ->
-            when (event) {
-                Lifecycle.Event.ON_RESUME -> {
-                    Log.v("JordanRA", "ON_RESUME")
-                    player?.play()
-                }
-                Lifecycle.Event.ON_PAUSE -> {
-                    Log.v("JordanRA", "ON_PAUSE")
-                    player?.pause()
-                }
-                else -> {
-                    //
-                }
-            }
-        }
-        lifecycle.addObserver(observer)
-        onDispose {
-            lifecycle.removeObserver(observer)
-        }
-    }*/
 }

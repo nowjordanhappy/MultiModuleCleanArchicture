@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,6 +19,7 @@ import com.devsu.streaming_ui_tv.components.LoadingView
 import com.devsu.streaming_ui_tv.components.TvContainer
 import com.devsu.streaming_ui_tv.radio.components.RadioList
 import com.devsu.streaming_ui_tv.radio.main.components.Section
+import com.devsu.streaming_ui_tv.youtube_video.YouTubeVideoUiEvent
 
 @Composable
 fun SearchRadioListScreen(
@@ -25,6 +27,16 @@ fun SearchRadioListScreen(
     viewModel: SearchRadioListViewModel = hiltViewModel()
 ) {
     val state = viewModel.state
+
+    LaunchedEffect(key1 = true){
+        viewModel.uiEvent.collect{ event->
+            when(event){
+                is SearchRadioListUiEvent.ShowError -> {
+                    scaffoldState.showSnackbar(event.message)
+                }
+            }
+        }
+    }
 
     TvContainer(
         modifier = Modifier,
@@ -44,8 +56,6 @@ fun SearchRadioListScreen(
                     modifier = Modifier.fillMaxSize(),
                     items = state.radioList,
                     onSelectItem = { radio ->
-                        Log.v("JordanRA", "StreamingDirections.radioPlayer().route: ${StreamingDirections.radioPlayer().route}")
-                        Log.v("TV", "RadioList onClick: ${radio.name}")
                         viewModel.onEvent(SearchRadioListEvent.OnNavigateToToRadioPlayer(radio))
                     }
                 )

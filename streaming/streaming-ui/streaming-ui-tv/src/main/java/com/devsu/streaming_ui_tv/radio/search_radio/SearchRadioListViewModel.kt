@@ -33,7 +33,7 @@ class SearchRadioListViewModel @Inject constructor(
 ): ViewModel() {
     var state by mutableStateOf(SearchRadioListState())
 
-    private val _uiEvent = Channel<RadioListUiEvent>()
+    private val _uiEvent = Channel<SearchRadioListUiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
@@ -106,7 +106,7 @@ class SearchRadioListViewModel @Inject constructor(
                         when(dataState.uiComponent){
                             is UIComponent.None -> {
                                 val message = (dataState.uiComponent as UIComponent.None).message
-                                _uiEvent.send(RadioListUiEvent.ShowError(message))
+                                _uiEvent.send(SearchRadioListUiEvent.ShowError(message))
                             }
                         }
                     }
@@ -116,7 +116,6 @@ class SearchRadioListViewModel @Inject constructor(
     }
 }
 
-sealed class RadioListUiEvent{
-    object SuccessSearch: RadioListUiEvent()
-    data class ShowError(val message: String): RadioListUiEvent()
+sealed class SearchRadioListUiEvent{
+    data class ShowError(val message: String): SearchRadioListUiEvent()
 }
