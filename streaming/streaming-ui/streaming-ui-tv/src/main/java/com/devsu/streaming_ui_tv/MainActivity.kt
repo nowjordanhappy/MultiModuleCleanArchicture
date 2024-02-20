@@ -28,8 +28,8 @@ import com.devsu.streaming_ui_tv.radio.main.RadioMainScreen
 import com.devsu.streaming_ui_tv.radio.radio_player.RadioPlayerScreen
 import com.devsu.streaming_ui_tv.radio.search_radio.SearchRadioListScreen
 import com.devsu.streaming_ui_tv.theme.StreamingUiMobileTheme
-import com.devsu.streaming_ui_tv.youtube_video.YouTubeVideoScreen
-import com.devsu.streaming_ui_tv.youtube_video_player.YouTubeVideoPlayerScreen
+import com.devsu.streaming_ui_tv.youtube.youtube_video.YouTubeVideoScreen
+import com.devsu.streaming_ui_tv.youtube.youtube_video_player.YouTubeVideoPlayerScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @UnstableApi @OptIn(ExperimentalMaterial3Api::class)

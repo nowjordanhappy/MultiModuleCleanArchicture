@@ -30,7 +30,7 @@ fun CountryItem(
     country: Country,
     isSelected: Boolean = false,
     focusRequester: FocusRequester = FocusRequester(),
-    onClick: () -> Unit,
+    onClick: (Country) -> Unit,
     onChangeItem: (Country) -> Unit,
 ) {
     var isFocused by remember { mutableStateOf(false) }
@@ -51,7 +51,7 @@ fun CountryItem(
                 }
             },
         scale = CardDefaults.scale(focusedScale = 1.2f),
-        onClick = onClick
+        onClick = { onClick(country) }
     ) {
         val context = LocalContext.current
         Box(

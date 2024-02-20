@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalTvMaterial3Api::class)
 
-package com.devsu.streaming_ui_tv.youtube_video.components
+package com.devsu.streaming_ui_tv.youtube.youtube_video.components
 
 import android.net.Uri
 import android.util.Log
@@ -46,7 +46,7 @@ fun YouTubeVideoItem(
     video: YouTubeVideo,
     focusRequester: FocusRequester = FocusRequester(),
     isSelected: Boolean = false,
-    onClick: ()->Unit,
+    onClick: (YouTubeVideo)->Unit,
     onChangeItem: (YouTubeVideo) -> Unit,
 ) {
     var isFocused by remember { mutableStateOf(false) }
@@ -66,7 +66,7 @@ fun YouTubeVideoItem(
                     onChangeItem(video)
                 }
             },
-        onClick = onClick,
+        onClick = { onClick(video) },
         scale = CardDefaults.scale(focusedScale = 1.15f),
     ) {
         val context = LocalContext.current
@@ -126,7 +126,7 @@ fun YouTubeVideoImage(
                     Log.v("JordanRA", "error: ${it.result.throwable}")
                 },
             )
-            if(isError)RadioDefaultImage()
+            if(isError) RadioDefaultImage()
         } else {
             RadioDefaultImage()
         }

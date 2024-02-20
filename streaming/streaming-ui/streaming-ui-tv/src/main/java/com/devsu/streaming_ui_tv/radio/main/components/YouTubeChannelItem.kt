@@ -35,7 +35,7 @@ fun YouTubeChannelItem(
     channel: YouTubeChannel,
     isSelected: Boolean = false,
     focusRequester: FocusRequester = FocusRequester(),
-    onClick: () -> Unit,
+    onClick: (YouTubeChannel) -> Unit,
     onChangeItem: (YouTubeChannel) -> Unit,
 ) {
     var isFocused by remember { mutableStateOf(false) }
@@ -57,7 +57,7 @@ fun YouTubeChannelItem(
                 Log.v("TV", "here ${channel.name}- hasFocus: ${isFocused}")
             },
         scale = CardDefaults.scale(focusedScale = 1.2f),
-        onClick = onClick
+        onClick = { onClick(channel) }
     ) {
         val context = LocalContext.current
         Box(

@@ -1,4 +1,4 @@
-package com.devsu.streaming_ui_tv.youtube_video_player
+package com.devsu.streaming_ui_tv.youtube.youtube_video_player
 
 import android.util.Log
 import androidx.compose.runtime.getValue

@@ -12,6 +12,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -134,7 +135,7 @@ fun RadioMainScreen(
                                         viewModel.onEvent(RadioMainEvent.OnChangeYouTubeChannel(it))
                                     },
                                     onClick = {
-                                        viewModel.onEvent(RadioMainEvent.OnNavigateToYouTubeVideo(channel))
+                                        viewModel.onEvent(RadioMainEvent.OnNavigateToYouTubeVideo(it))
                                     }
                                 )
                             }
@@ -165,9 +166,7 @@ fun RadioMainScreen(
                                 .size(120.dp, 75.dp),
                             onClick = {
                                 viewModel.onEvent(
-                                    RadioMainEvent.OnNavigateToRadioListByCountry(
-                                        country
-                                    )
+                                    RadioMainEvent.OnNavigateToRadioListByCountry(it)
                                 )
                             },
                             onChangeItem = {
@@ -211,6 +210,8 @@ fun RadioMainScreen(
                         )
                     }
                 }
+                
+                Spacer(modifier = Modifier.height(40.dp))
             }
 
         }

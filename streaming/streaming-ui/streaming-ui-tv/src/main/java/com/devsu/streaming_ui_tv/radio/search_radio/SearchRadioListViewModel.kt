@@ -56,6 +56,7 @@ class SearchRadioListViewModel @Inject constructor(
         when(event){
             is SearchRadioListEvent.OnSearchRadioList -> onGetRadioList(event)
             is SearchRadioListEvent.OnNavigateToToRadioPlayer -> onNavigateToToRadioPlayer(event)
+            is SearchRadioListEvent.OnChangeRadio -> onChangeRadio(event)
         }
     }
 
@@ -113,6 +114,12 @@ class SearchRadioListViewModel @Inject constructor(
                 }
             }
             .launchIn(viewModelScope)
+    }
+
+    private fun onChangeRadio(event: SearchRadioListEvent.OnChangeRadio) {
+        state = state.copy(
+            radioSelected = event.radio
+        )
     }
 }
 

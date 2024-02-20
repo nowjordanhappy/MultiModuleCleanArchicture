@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devsu.navigation.NavigationManager
 import com.devsu.navigation.StreamingDirections
-import com.devsu.streaming_ui_tv.youtube_video_player.YouTubeVideoPlayerUiEvent
+import com.devsu.streaming_ui_tv.youtube.youtube_video_player.YouTubeVideoPlayerUiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow

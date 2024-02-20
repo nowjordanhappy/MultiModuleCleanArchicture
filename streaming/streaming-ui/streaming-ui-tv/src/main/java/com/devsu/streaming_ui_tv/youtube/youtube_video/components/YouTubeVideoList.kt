@@ -1,4 +1,4 @@
-package com.devsu.streaming_ui_tv.youtube_video.components
+package com.devsu.streaming_ui_tv.youtube.youtube_video.components
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
@@ -31,9 +31,7 @@ fun YouTubeVideoList(
                     .height(300.dp),
                 isSelected = (video.videoId == videoSelected?.videoId),
                 video = video,
-                onClick = {
-                    onSelectItem.invoke(video)
-                },
+                onClick = onSelectItem,
                 onChangeItem = onChangeItem
             )
         }

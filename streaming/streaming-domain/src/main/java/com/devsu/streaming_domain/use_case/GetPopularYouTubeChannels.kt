@@ -41,7 +41,7 @@ class GetPopularYouTubeChannels {
                     title = "Tu dinero disponible cuando quieras.",
                     subtitle = "Mantén tu dinero seguro",
                     background = "https://masfinanzas.com.pe/wp-content/uploads/2021/01/Banco-Pichincha.jpg",
-                    logo = "https://scontent-ord5-2.xx.fbcdn.net/v/t1.6435-9/40116303_2036865229697854_9075671977015902208_n.png?_nc_cat=104&ccb=1-7&_nc_sid=7a1959&_nc_ohc=rbKEYbsner8AX8kz1LS&_nc_ht=scontent-ord5-2.xx&oh=00_AfByXoUyXlepKuRERY_heML0sbP7U-7SFCmVf2J0oIjdSA&oe=65E8C72A",
+                    logo = "https://i.ibb.co/Sf4L3gc/425761798-704783698436900-2682186981372553487-n.jpghttps://i.ibb.co/2gxW4Xp/40116303-2036865229697854-9075671977015902208-n.png",
                 ),
                 YouTubeChannel(
                     channelId = "UCVg_sYcMgzN08BJlmHJjWZA",
@@ -49,8 +49,8 @@ class GetPopularYouTubeChannels {
                     title = "NUESTROS FONDOS DE INVERSIÓN\n" +
                             "SON LA FORMA DE CONSEGUIR TUS METAS",
                     subtitle = "Nuestros fondos reducen el riesgo diversificando el portafolio de inversiones en varias instituciones, rigurosamente seleccionadas para brindar la mayor seguridad.",
-                    background = "https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/419090853_690009349914335_4058447540919684730_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=3635dc&_nc_ohc=hrH8GPeJizkAX_Szist&_nc_ht=scontent-ord5-2.xx&oh=00_AfBx_xFl5l0bZKJrCLUvUSreP_AYPw4FSZP9G9kl-ZQsNg&oe=65C6A8E2",
-                    logo = "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/425761798_704783698436900_2682186981372553487_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=3635dc&_nc_ohc=4hc_oyihS4IAX8Ybe_R&_nc_ht=scontent-ord5-1.xx&oh=00_AfDFNkcqD2ca_c9KxlRiWbqhJ17wXzcU0DewmHuMgCVkSA&oe=65D977A3",
+                    background = "https://i.ibb.co/NFSsYrs/425848254-705898111658792-345306380441483549-n-1.jpg",
+                    logo = "https://i.ibb.co/2gxW4Xp/40116303-2036865229697854-9075671977015902208-n.png",
                 ),
             )
         )
