@@ -46,7 +46,7 @@ fun YouTubeVideoPlayerScreen(
                 videoId = videoId,
                 isPlaying = false,
                 onVideoError = {
-
+                    viewModel.onEvent(YouTubeVideoPlayerEvent.OnShowError(it.name))
                 }
             )
         }
