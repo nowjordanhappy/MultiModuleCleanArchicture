@@ -41,7 +41,7 @@ class GetPopularYouTubeChannels {
                     title = "Tu dinero disponible cuando quieras.",
                     subtitle = "Mantén tu dinero seguro",
                     background = "https://masfinanzas.com.pe/wp-content/uploads/2021/01/Banco-Pichincha.jpg",
-                    logo = "https://i.ibb.co/Sf4L3gc/425761798-704783698436900-2682186981372553487-n.jpghttps://i.ibb.co/2gxW4Xp/40116303-2036865229697854-9075671977015902208-n.png",
+                    logo = "https://i.ibb.co/2gxW4Xp/40116303-2036865229697854-9075671977015902208-n.png",
                 ),
                 YouTubeChannel(
                     channelId = "UCVg_sYcMgzN08BJlmHJjWZA",
@@ -50,7 +50,23 @@ class GetPopularYouTubeChannels {
                             "SON LA FORMA DE CONSEGUIR TUS METAS",
                     subtitle = "Nuestros fondos reducen el riesgo diversificando el portafolio de inversiones en varias instituciones, rigurosamente seleccionadas para brindar la mayor seguridad.",
                     background = "https://i.ibb.co/NFSsYrs/425848254-705898111658792-345306380441483549-n-1.jpg",
-                    logo = "https://i.ibb.co/2gxW4Xp/40116303-2036865229697854-9075671977015902208-n.png",
+                    logo = "https://i.ibb.co/Sf4L3gc/425761798-704783698436900-2682186981372553487-n.jpghttps://i.ibb.co/2gxW4Xp/40116303-2036865229697854-9075671977015902208-n.png",
+                ),
+                YouTubeChannel(
+                    channelId = "UCVg_sYcMgzN08BJlmHJjWZA",
+                    name = "MrBeast",
+                    title = "SUBSCRIBE FOR A COOKIE!",
+                    subtitle = "X Super Official CEO",
+                    background = "https://www.snackandbakery.com/ext/resources/ci/2022/01/31/MrBeast-Feastables.png?1670345226",
+                    logo = "https://static.wikia.nocookie.net/dream_team/images/7/79/Mrbeastlogo.jpg/revision/latest?cb=20230125153030",
+                ),
+                YouTubeChannel(
+                    channelId = "UCqECaJ8Gagnn7YCbPEzWH6g",
+                    name = "Taylor Swift",
+                    title = "THE ERAS TOUR",
+                    subtitle = "All’s fair in love and poetry. New album THE TORTURED POETS DEPARTMENT. Out April 19 \uD83E\uDD0D",
+                    background = "https://i0.wp.com/libertytheatrenc.com/wp-content/uploads/2023/09/2_Landscape-Hero-Art_16x9_3000.jpg?resize=2048%2C1152&ssl=1",
+                    logo = "https://pbs.twimg.com/profile_images/1758452321644650496/tGEf4QFK_400x400.jpg",
                 ),
             )
         )
