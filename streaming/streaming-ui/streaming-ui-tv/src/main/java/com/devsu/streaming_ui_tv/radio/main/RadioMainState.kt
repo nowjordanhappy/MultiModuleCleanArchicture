@@ -10,4 +10,7 @@ data class RadioMainState(
     val popularTags: List<Tag> = emptyList(),
     val popularCountries: List<Country> = emptyList(),
     val popularYouTubeChannels: List<YouTubeChannel> = emptyList(),
+    val youtubeChannelSelected: YouTubeChannel? = null,
+    val countrySelected: Country? = null,
+    val popularTagSelected: Tag? = null,
 )

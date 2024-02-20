@@ -12,4 +12,7 @@ sealed interface RadioMainEvent{
     data class OnNavigateToRadioListByTag(val tag: Tag): RadioMainEvent
     data class OnNavigateToRadioListByCountry(val country: Country): RadioMainEvent
     data class OnNavigateToYouTubeVideo(val youTubeChannel: YouTubeChannel): RadioMainEvent
+    data class OnChangeYouTubeChannel(val youTubeChannel: YouTubeChannel?): RadioMainEvent
+    data class OnChangeCountry(val country: Country): RadioMainEvent
+    data class OnChangePopularTag(val tag: Tag): RadioMainEvent
 }

@@ -2,7 +2,6 @@
 
 package com.devsu.streaming_ui_tv.radio.main
 
-import android.util.Log
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -10,31 +9,26 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
-import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -131,10 +125,14 @@ fun RadioMainScreen(
                             itemsIndexed(state.popularYouTubeChannels) { index, channel ->
                                 YouTubeChannelItem(
                                     channel = channel,
+                                    isSelected = (channel.channelId == state.youtubeChannelSelected?.channelId),
                                     modifier = Modifier
                                         .padding(15.dp)
                                         .size(100.dp, 100.dp)
                                         .immersiveListItem(index),
+                                    onChangeItem = {
+                                        viewModel.onEvent(RadioMainEvent.OnChangeYouTubeChannel(it))
+                                    },
                                     onClick = {
                                         viewModel.onEvent(RadioMainEvent.OnNavigateToYouTubeVideo(channel))
                                     }
@@ -147,7 +145,7 @@ fun RadioMainScreen(
 
             item{
                 Section(
-                    title = "Popular Countries",
+                    title = stringResource(com.devsu.streaming_ui_tv.R.string.popular_countries),
                     modifier = Modifier
                         .padding(horizontal = 30.dp)
                         .padding(top = 20.dp)
@@ -161,6 +159,7 @@ fun RadioMainScreen(
                     items(state.popularCountries) { country ->
                         CountryItem(
                             country = country,
+                            isSelected = (country == state.countrySelected),
                             modifier = Modifier
                                 .padding(15.dp)
                                 .size(120.dp, 75.dp),
@@ -170,6 +169,11 @@ fun RadioMainScreen(
                                         country
                                     )
                                 )
+                            },
+                            onChangeItem = {
+                                viewModel.onEvent(
+                                    RadioMainEvent.OnChangeCountry(it)
+                                )
                             }
                         )
                     }
@@ -178,7 +182,7 @@ fun RadioMainScreen(
 
             item {
                 Section(
-                    title = "Popular Tags",
+                    title = stringResource(com.devsu.streaming_ui_tv.R.string.popular_tags),
                     modifier = Modifier
                         .padding(horizontal = 30.dp)
                         .padding(top = 20.dp)
@@ -192,43 +196,23 @@ fun RadioMainScreen(
                     items(state.popularTags) { tag ->
                         TagItem(
                             tag = tag,
+                            isSelected = (tag == state.popularTagSelected),
                             modifier = Modifier
                                 .padding(10.dp)
                                 .size(100.dp),
                             onClick = {
                                 viewModel.onEvent(RadioMainEvent.OnNavigateToRadioListByTag(tag))
+                            },
+                            onChangeItem = {
+                                viewModel.onEvent(
+                                    RadioMainEvent.OnChangePopularTag(it)
+                                )
                             }
                         )
                     }
                 }
             }
 
-            item {
-                Section(
-                    title = "Popular Tags",
-                    modifier = Modifier
-                        .padding(horizontal = 30.dp)
-                        .padding(top = 20.dp)
-                )
-
-                TvLazyRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp)
-                ) {
-                    items(state.popularTags) { tag ->
-                        TagItem(
-                            tag = tag,
-                            modifier = Modifier
-                                .padding(10.dp)
-                                .size(100.dp),
-                            onClick = {
-                                viewModel.onEvent(RadioMainEvent.OnNavigateToRadioListByTag(tag))
-                            }
-                        )
-                    }
-                }
-            }
         }
     }
 }
@@ -275,22 +259,6 @@ fun ContentBlock(index: YouTubeChannel, modifier: Modifier) {
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
-        }
-    }
-}
-
-@Composable
-fun CustomVector(modifier: Modifier = Modifier, size: Dp, color1: Color, color2: Color) {
-    Canvas(modifier = modifier.size(size)) {
-        drawIntoCanvas { canvas ->
-            val brush = Brush.radialGradient(
-                0.0f to color1,
-                0.71f to color2,
-                center = center,
-                radius = size.toPx() / 2,
-                tileMode = TileMode.Repeated
-            )
-            //canvas.nativeCanvas.drawPaint(brush)
         }
     }
 }

@@ -7,4 +7,5 @@ import com.devsu.streaming_domain.model.YouTubeVideo
 sealed interface YouTubeVideoEvent{
     data class OnGetYouTubeVideos(val channelId: String?, val channelName: String?): YouTubeVideoEvent
     data class OnNavigateToYouTubePlayer(val video: YouTubeVideo): YouTubeVideoEvent
+    data class OnChangeYouTubeVideo(val video: YouTubeVideo): YouTubeVideoEvent
 }

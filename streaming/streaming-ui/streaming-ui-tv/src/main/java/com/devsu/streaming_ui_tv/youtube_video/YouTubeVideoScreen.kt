@@ -11,10 +11,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.devsu.core_ui.model.ProgressBarState
 import com.devsu.navigation.StreamingDirections
+import com.devsu.streaming_ui_tv.R
 import com.devsu.streaming_ui_tv.components.LoadingView
 import com.devsu.streaming_ui_tv.components.TvContainer
 import com.devsu.streaming_ui_tv.radio.components.RadioList
@@ -45,7 +47,7 @@ fun YouTubeVideoScreen(
     ) {
         Column (horizontalAlignment = Alignment.CenterHorizontally){
             Section(
-                title = state.channelName ?: "Channel Video",
+                title = state.channelName ?: stringResource(R.string.channel_video),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 50.dp)
@@ -56,8 +58,12 @@ fun YouTubeVideoScreen(
                 YouTubeVideoList(
                     modifier = Modifier.fillMaxSize(),
                     items = state.youTubeVideos,
+                    videoSelected = state.youTubeVideoSelected,
                     onSelectItem = { video ->
                         viewModel.onEvent(YouTubeVideoEvent.OnNavigateToYouTubePlayer(video))
+                    },
+                    onChangeItem = { video ->
+                        viewModel.onEvent(YouTubeVideoEvent.OnChangeYouTubeVideo(video))
                     }
                 )
             }else{

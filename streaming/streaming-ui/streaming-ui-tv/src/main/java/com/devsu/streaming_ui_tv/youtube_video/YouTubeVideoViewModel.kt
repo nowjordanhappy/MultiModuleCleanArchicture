@@ -54,6 +54,7 @@ class YouTubeVideoViewModel @Inject constructor(
         when(event){
             is YouTubeVideoEvent.OnGetYouTubeVideos -> onGetYouTubeVideos(event)
             is YouTubeVideoEvent.OnNavigateToYouTubePlayer -> onNavigateToYouTubePlayer(event)
+            is YouTubeVideoEvent.OnChangeYouTubeVideo -> onChangeYouTubeVideo(event)
         }
     }
 
@@ -103,6 +104,12 @@ class YouTubeVideoViewModel @Inject constructor(
                     videoTitle = event.video.title
                 )
             )
+        )
+    }
+
+    private fun onChangeYouTubeVideo(event: YouTubeVideoEvent.OnChangeYouTubeVideo) {
+        state = state.copy(
+            youTubeVideoSelected = event.video
         )
     }
 }

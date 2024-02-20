@@ -43,7 +43,10 @@ class RadioMainViewModel @Inject constructor(
             RadioMainEvent.OnGetPopularYouTubeChannels -> onGetPopularYouTubeChannels()
             is RadioMainEvent.OnNavigateToRadioListByTag -> onNavigateToRadioListByTag(event)
             is RadioMainEvent.OnNavigateToRadioListByCountry -> onNavigateToRadioListByCountry(event)
+            is RadioMainEvent.OnChangeYouTubeChannel -> onChangeChannelYouTube(event)
             is RadioMainEvent.OnNavigateToYouTubeVideo -> onNavigateToYouTubeVideo(event)
+            is RadioMainEvent.OnChangeCountry -> onChangeCountry(event)
+            is RadioMainEvent.OnChangePopularTag -> onChangePopularTag(event)
         }
     }
 
@@ -59,6 +62,10 @@ class RadioMainViewModel @Inject constructor(
     }
 
     private fun onNavigateToRadioListByCountry(event: RadioMainEvent.OnNavigateToRadioListByCountry) {
+        state = state.copy(
+            youtubeChannelSelected = null,
+            popularTagSelected = null
+        )
         navigationManager.navigate(
             NavigationCommandSegment.DefaultNavigation(
                 StreamingDirections.searchRadio(
@@ -70,6 +77,10 @@ class RadioMainViewModel @Inject constructor(
     }
 
     private fun onNavigateToRadioListByTag(event: RadioMainEvent.OnNavigateToRadioListByTag) {
+        state = state.copy(
+            youtubeChannelSelected = null,
+            countrySelected = null
+        )
         navigationManager.navigate(
             NavigationCommandSegment.DefaultNavigation(
                 StreamingDirections.searchRadio(
@@ -82,6 +93,10 @@ class RadioMainViewModel @Inject constructor(
 
     private fun onNavigateToYouTubeVideo(event: RadioMainEvent.OnNavigateToYouTubeVideo) {
         if(event.youTubeChannel.channelId.isBlank())return
+        state = state.copy(
+            countrySelected = null,
+            popularTagSelected = null
+        )
         navigationManager.navigate(
             NavigationCommandSegment.DefaultNavigation(
                 StreamingDirections.youTubeVideo(
@@ -89,6 +104,12 @@ class RadioMainViewModel @Inject constructor(
                     channelName = event.youTubeChannel.name
                 )
             )
+        )
+    }
+
+    private fun onChangeChannelYouTube(event: RadioMainEvent.OnChangeYouTubeChannel) {
+        state = state.copy(
+            youtubeChannelSelected = event.youTubeChannel
         )
     }
 
@@ -123,5 +144,17 @@ class RadioMainViewModel @Inject constructor(
                 )
             }
             .launchIn(viewModelScope)
+    }
+
+    private fun onChangePopularTag(event: RadioMainEvent.OnChangePopularTag) {
+        state = state.copy(
+            popularTagSelected = event.tag
+        )
+    }
+
+    private fun onChangeCountry(event: RadioMainEvent.OnChangeCountry) {
+        state = state.copy(
+            countrySelected = event.country
+        )
     }
 }

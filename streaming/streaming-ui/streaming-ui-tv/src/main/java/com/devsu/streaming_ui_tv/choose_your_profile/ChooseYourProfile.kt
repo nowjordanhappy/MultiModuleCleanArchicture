@@ -50,12 +50,11 @@ fun ChooseYourProfile(
             UserItemList(
                 modifier = Modifier,
                 users = state.users,
+                userSelected = state.userSelected,
                 onChangeItem = { user ->
                     viewModel.onEvent(ChooseYourProfileEvent.OnChangeUser(user))
-                    Log.v("TV", "user focused: ${user.name}")
                 },
                 onSelectItem = { user ->
-                    Log.v("TV", "user selected: ${user.name} - color: ${user.backgroundColor.toHexColor()}")
                     viewModel.onEvent(ChooseYourProfileEvent.OnSelectUser(user))
                 }
             )
@@ -75,7 +74,7 @@ fun ChooseYourProfile(
             } ?: kotlin.run {
                 Text(
                     modifier = Modifier,
-                    text = "Select a user",
+                    text = stringResource(R.string.select_a_user),
                     style = TextStyle.Default.copy(
                         fontSize = 25.sp,
                         color = Color.DarkGray.copy()
@@ -84,26 +83,4 @@ fun ChooseYourProfile(
             }
         }
     }
-}
-
-fun getTestUsers(): List<User> {
-    val user1 = User(
-        id = 1,
-        name = "Jordan",
-        avatar = "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg",
-        backgroundColor = Color.DarkGray.toArgb()
-    )
-    val user2 = User(
-        id = 2,
-        name = "Ari",
-        avatar = "https://img.freepik.com/free-psd/3d-illustration-person-with-long-hair_23-2149436197.jpg",
-        backgroundColor = DarkPurple.toArgb()
-    )
-    val user3 = User(
-        id = 3,
-        name = "Dad",
-        avatar = "https://img.freepik.com/free-psd/3d-illustration-business-man-with-glasses_23-2149436194.jpg",
-        backgroundColor = DarkPurple.toArgb()
-    )
-    return listOf(user1, user2, user3)
 }

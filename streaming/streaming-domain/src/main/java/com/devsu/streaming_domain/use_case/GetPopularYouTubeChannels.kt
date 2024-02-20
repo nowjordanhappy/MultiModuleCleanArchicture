@@ -23,7 +23,7 @@ class GetPopularYouTubeChannels {
                     title = "GET A FULL MEAL JUST FOR SIGNING UP",
                     subtitle = "For a limited time, join Taco Bell Rewards to get a Build Your Own Cravings Box for \$1** and redeem your free Welcome Reward* on the app.",
                     background = "https://images.axios.com/xXpfp16wDUo6HPfXh-D1a6kFGw4=/0x0:1920x1080/1920x1080/2021/08/12/1628795286976.jpg",
-                    logo = "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/327455423_3362398597363391_1896609657369018160_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=eYwREBq7NHcAX8yhdQN&_nc_ht=scontent-ord5-1.xx&oh=00_AfDVe211g7W98qQCBeHie6EvDAedG0Flaplvv6B73R0m6A&oe=65C6C303",
+                    logo = "https://play-lh.googleusercontent.com/-hKUbOPtydte2A9jkGwlijoPy1qnOktdEKhEl9leWxDoqYtbKhsDe3_rrMPTOV__5w",
                 ),
                 YouTubeChannel(
                     channelId = "",
@@ -50,7 +50,7 @@ class GetPopularYouTubeChannels {
                             "SON LA FORMA DE CONSEGUIR TUS METAS",
                     subtitle = "Nuestros fondos reducen el riesgo diversificando el portafolio de inversiones en varias instituciones, rigurosamente seleccionadas para brindar la mayor seguridad.",
                     background = "https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/419090853_690009349914335_4058447540919684730_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=3635dc&_nc_ohc=hrH8GPeJizkAX_Szist&_nc_ht=scontent-ord5-2.xx&oh=00_AfBx_xFl5l0bZKJrCLUvUSreP_AYPw4FSZP9G9kl-ZQsNg&oe=65C6A8E2",
-                    logo = "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/425761798_704783698436900_2682186981372553487_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=3635dc&_nc_ohc=WjOjeHh1l_wAX-LRt70&_nc_ht=scontent-ord5-1.xx&oh=00_AfCXq5E7eBddglR8aUCHZEJ2SRR2dEUaynJ04InoBG_rmg&oe=65C5B123",
+                    logo = "https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/425761798_704783698436900_2682186981372553487_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=3635dc&_nc_ohc=4hc_oyihS4IAX8Ybe_R&_nc_ht=scontent-ord5-1.xx&oh=00_AfDFNkcqD2ca_c9KxlRiWbqhJ17wXzcU0DewmHuMgCVkSA&oe=65D977A3",
                 ),
             )
         )

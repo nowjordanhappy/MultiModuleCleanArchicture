@@ -10,12 +10,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -38,19 +41,28 @@ import com.devsu.streaming_ui_tv.util.conditional
 fun UserItem(
     modifier: Modifier = Modifier,
     user: User,
+    focusRequester: FocusRequester = FocusRequester(),
+    isSelected: Boolean = false,
     onSelectItem: (User) -> Unit,
     onChangeItem: (User) -> Unit,
 ) {
+
     Box(
         modifier = Modifier
             .padding(10.dp)
     ) {
-        //val interactionSource = remember { MutableInteractionSource() }
-        var isFocused by remember { mutableStateOf(true) }
+        var isFocused by remember { mutableStateOf(false) }
+
+        LaunchedEffect(isSelected){
+            if(isSelected) {
+                focusRequester.requestFocus()
+            }
+        }
 
         Surface(
             modifier = modifier
                 .padding(horizontal = 32.dp)
+                .focusRequester(focusRequester)
                 .onFocusChanged {
                     isFocused = it.isFocused
                     if (isFocused) {

@@ -10,4 +10,5 @@ data class YouTubeVideoState (
     val channelName: String? = null,
     val progressBarState: ProgressBarState = ProgressBarState.Idle,
     val youTubeVideos: List<YouTubeVideo> = emptyList(),
+    val youTubeVideoSelected: YouTubeVideo? = null,
 )

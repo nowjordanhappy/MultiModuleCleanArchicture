@@ -10,6 +10,7 @@ import com.devsu.streaming_domain.model.User
 fun UserItemList(
     modifier: Modifier,
     users: List<User>,
+    userSelected: User?,
     onSelectItem: (User) -> Unit,
     onChangeItem: (User) -> Unit,
 ) {
@@ -21,7 +22,9 @@ fun UserItemList(
             { user -> user.id }
         ) { user ->
             UserItem(
-                user = user, onSelectItem = onSelectItem, onChangeItem = onChangeItem
+                user = user,
+                isSelected = (user.id == userSelected?.id),
+                onSelectItem = onSelectItem, onChangeItem = onChangeItem
             )
         }
     }
