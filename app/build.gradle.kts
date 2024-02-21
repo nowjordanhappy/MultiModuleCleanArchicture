@@ -65,6 +65,10 @@ android {
         create("tv") {
             dimension = "platform"
         }
+        create("streaming") {
+            dimension = "platform"
+            applicationIdSuffix = ".streaming"
+        }
     }
 
 
@@ -74,6 +78,9 @@ android {
         }
         getByName("tv") {
             manifest.srcFile("src/tv/AndroidManifest.xml")
+        }
+        getByName("streaming") {
+            manifest.srcFile("src/streaming/AndroidManifest.xml")
         }
     }
 }

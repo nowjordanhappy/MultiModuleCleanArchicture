@@ -2,26 +2,39 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/app_name_streaming"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".MovieApp"
-        android:allowClearUserData="true">
+        tools:replace="android:label">
+
         <activity
-            android:name="com.devsu.movie_ui_mobile.MainActivity"
+            android:name="com.devsu.streaming_ui_tv.MainActivity"
+            android:banner="@drawable/app_icon_streaming"
             android:exported="true"
+            android:icon="@drawable/app_icon_streaming"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MultiModuleCleanArchicture">
+            android:logo="@drawable/app_icon_streaming"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.MovieUiTv">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
