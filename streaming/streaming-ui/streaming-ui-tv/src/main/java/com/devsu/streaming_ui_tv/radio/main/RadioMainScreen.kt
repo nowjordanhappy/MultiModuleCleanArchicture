@@ -7,7 +7,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,10 +20,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.TileMode
-import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
@@ -32,10 +28,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.tv.foundation.PivotOffsets
 import androidx.tv.foundation.lazy.list.TvLazyColumn
 import androidx.tv.foundation.lazy.list.TvLazyRow
 import androidx.tv.foundation.lazy.list.items
@@ -48,6 +44,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.devsu.core_ui.R
 import com.devsu.streaming_domain.model.YouTubeChannel
+import com.devsu.streaming_ui_tv.components.PageIndicator
 import com.devsu.streaming_ui_tv.components.TvContainer
 import com.devsu.streaming_ui_tv.radio.main.components.CountryItem
 import com.devsu.streaming_ui_tv.radio.main.components.Section
@@ -79,11 +76,12 @@ fun RadioMainScreen(
                             modifier = Modifier
                                 .fillMaxSize()
                         ) {
+                            val channel = state.popularYouTubeChannels[index]
                             AsyncImage(
                                 model = ImageRequest.Builder(LocalContext.current)
-                                    .data(state.popularYouTubeChannels[index].background)
+                                    .data(channel.background)
                                     .build(),
-                                contentDescription = state.popularYouTubeChannels[index].name,
+                                contentDescription = channel.name,
                                 contentScale = ContentScale.FillHeight ,
                                 modifier = Modifier
                                     .fillMaxSize()
@@ -100,7 +98,7 @@ fun RadioMainScreen(
                             )
 
                             ContentBlock(
-                                index = state.popularYouTubeChannels[index],
+                                index = channel,
                                 modifier = Modifier
                                     .align(Alignment.CenterStart)
                                     .padding(start = 60.dp, end = 30.dp, bottom = 30.dp)
@@ -110,14 +108,20 @@ fun RadioMainScreen(
                     }) {
 
                     Column {
-                        /*Section(
-                            title = "Popular YouTube Channels",
-                            modifier = Modifier
-                                .padding(horizontal = 30.dp)
-                                .padding(top = 20.dp)
-                        )*/
+                        Box(
+                            modifier = Modifier.fillMaxWidth()
+                                .padding(end = 20.dp),
+                            contentAlignment = Alignment.CenterEnd
+                        ){
+                            PageIndicator(
+                                pages = state.popularYouTubeChannels.size,
+                                currentPage = state.popularYouTubeChannels.indexOfFirst {  it == state.youtubeChannelSelected}
+                            )
+                        }
 
                         TvLazyRow(
+                            pivotOffsets = PivotOffsets(0.5f, 0.5f),
+                            horizontalArrangement = Arrangement.spacedBy(5.dp),
                             state = tvRowListState,
                             modifier = Modifier
                                 .fillMaxWidth()

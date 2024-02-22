@@ -31,6 +31,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.core.text.HtmlCompat
 import androidx.tv.material3.Card
 import androidx.tv.material3.CardDefaults
 import androidx.tv.material3.ExperimentalTvMaterial3Api
@@ -83,7 +84,7 @@ fun YouTubeVideoItem(
                     )
                 )
                 Text(
-                    text = video.title, maxLines = 2, overflow = TextOverflow.Ellipsis,
+                    text = HtmlCompat.fromHtml((video.title), HtmlCompat.FROM_HTML_MODE_COMPACT).toString(), maxLines = 2, overflow = TextOverflow.Ellipsis,
                     style = TextStyle.Default.copy(
                         fontWeight = FontWeight.Bold
                     )

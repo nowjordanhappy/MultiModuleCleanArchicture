@@ -53,12 +53,20 @@ class GetPopularYouTubeChannels {
                     logo = "https://i.ibb.co/Sf4L3gc/425761798-704783698436900-2682186981372553487-n.jpghttps://i.ibb.co/2gxW4Xp/40116303-2036865229697854-9075671977015902208-n.png",
                 ),
                 YouTubeChannel(
-                    channelId = "UCVg_sYcMgzN08BJlmHJjWZA",
+                    channelId = "UCX6OQ3DkcsbYNE6H8uQQuVA",
                     name = "MrBeast",
                     title = "SUBSCRIBE FOR A COOKIE!",
                     subtitle = "X Super Official CEO",
                     background = "https://www.snackandbakery.com/ext/resources/ci/2022/01/31/MrBeast-Feastables.png?1670345226",
                     logo = "https://static.wikia.nocookie.net/dream_team/images/7/79/Mrbeastlogo.jpg/revision/latest?cb=20230125153030",
+                ),
+                YouTubeChannel(
+                    channelId = "UC14UlmYlSNiQCBe9Eookf_A",
+                    name = "FC Barcelona",
+                    title = "Més Que Un Club",
+                    subtitle = "Visça Barça! \uD83D\uDC99❤️\uD83C\uDF0D",
+                    background = "https://www.fcbarcelona.com/fcbarcelona/photo/2020/02/18/b2b0e119-6a15-4f09-9f27-b9c4f0ed1eb0/16-FCBPSG-61-1617-FULL-MATCH.png",
+                    logo = "https://static.wikia.nocookie.net/youtubepedia/images/0/0e/FC_Barcelona.jpg/revision/latest/scale-to-width-down/1200?cb=20220913000824&path-prefix=es",
                 ),
                 YouTubeChannel(
                     channelId = "UCqECaJ8Gagnn7YCbPEzWH6g",
