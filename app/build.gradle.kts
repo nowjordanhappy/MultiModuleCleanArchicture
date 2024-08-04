@@ -6,6 +6,7 @@ import com.devsu.buildsrc.Retrofit
 import com.devsu.buildsrc.Fragment
 import com.devsu.buildsrc.Leanback
 import com.devsu.buildsrc.Compose
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
     id(com.devsu.buildsrc.Plugins.androidApplication)
@@ -25,6 +26,7 @@ android {
         versionCode = ProjectConfig.versionCode
         versionName = ProjectConfig.versionName
 
+        buildConfigField("String", "YOUTUBE_API_KEY", gradleLocalProperties(rootDir).getProperty("youtube.key"))
     }
 
     buildFeatures {
@@ -63,6 +65,10 @@ android {
         create("tv") {
             dimension = "platform"
         }
+        create("streaming") {
+            dimension = "platform"
+            applicationIdSuffix = ".streaming"
+        }
     }
 
 
@@ -72,6 +78,9 @@ android {
         }
         getByName("tv") {
             manifest.srcFile("src/tv/AndroidManifest.xml")
+        }
+        getByName("streaming") {
+            manifest.srcFile("src/streaming/AndroidManifest.xml")
         }
     }
 }
@@ -93,6 +102,13 @@ dependencies {
     implementation(project(Modules.movieUiMobile))
     implementation(project(Modules.movieDomain))
     implementation(project(Modules.movieData))
+
+    implementation(project(Modules.navigation))
+    implementation(project(Modules.preferences))
+
+    implementation(project(Modules.streamingDomain))
+    implementation(project(Modules.streamingData))
+    implementation(project(Modules.streamingUiTv))
 
     implementation(Retrofit.okHttpBmo)
     implementation(Retrofit.okHttp)

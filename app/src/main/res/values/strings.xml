@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MultiModuleCleanArchicture</string>
+    <string name="app_name_streaming">Streaming Demo</string>
 </resources>

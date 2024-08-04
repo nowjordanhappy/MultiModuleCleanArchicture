@@ -19,4 +19,6 @@ object AndroidX {
     private const val constraintLayoutVersion = "2.1.4"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
+    private const val datastoreVersion = "1.0.0"
+    const val datastore = "androidx.datastore:datastore-preferences:$datastoreVersion"
 }

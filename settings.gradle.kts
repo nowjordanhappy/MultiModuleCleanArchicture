@@ -10,6 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = uri ("https://www.jitpack.io") }
     }
 }
 
@@ -23,3 +24,10 @@ include(":movie:movie-ui:movie-ui-tv")
 include(":movie:movie-ui:movie-ui-mobile")
 include(":core")
 include(":core-ui")
+include(":streaming")
+include(":streaming:streaming-data")
+include(":streaming:streaming-domain")
+include(":streaming:streaming-ui")
+include(":streaming:streaming-ui:streaming-ui-tv")
+include(":navigation")
+include(":preferences")

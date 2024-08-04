@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="who_s_watching">Who\'s watching?</string>
+    <string name="pause">Pause</string>
+    <string name="play">Play</string>
+    <string name="select_a_user">Select a user</string>
+    <string name="popular_tags">Popular Tags</string>
+    <string name="popular_countries">Popular Countries</string>
+    <string name="channel_video">Channel Video</string>
+    <string name="radio_list">Radio List</string>
+</resources>
