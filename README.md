@@ -86,6 +86,15 @@ The project has the following modules:
   - **streaming-domain**
   - **streaming-ui** 
 
+
+Now we need to define these variables in `local.properties`:
+
+```
+    moviedb.key=
+    youtube.key=
+```
+
+
 ## API Reference Movie <a name = "api-reference-movie"></a>
 Using [The Movie Database API](https://developer.themoviedb.org/reference/intro/getting-started) for this project.
 

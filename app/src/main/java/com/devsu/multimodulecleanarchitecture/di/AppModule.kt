@@ -1,16 +1,12 @@
 package com.devsu.multimodulecleanarchitecture.di
 
-import android.util.Log
 import com.devsu.core.Constants
-import com.devsu.core_ui.model.DataState
 import com.devsu.multimodulecleanarchitecture.BuildConfig
 import com.devsu.navigation.NavigationManager
-import com.devsu.preferences.PreferencesManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import java.util.prefs.Preferences
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -21,6 +17,11 @@ class AppModule {
     @Singleton
     @Provides
     fun providesNavigationManager() = NavigationManager()
+
+    @Singleton
+    @Provides
+    @Named(Constants.DEFAULT_MOVIEDB_API_KEY_NAME)
+    fun providesMovieDBApiKey() = BuildConfig.MOVIEDB_API_KEY
 
     @Singleton
     @Provides

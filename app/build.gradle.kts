@@ -27,6 +27,7 @@ android {
         versionName = ProjectConfig.versionName
 
         buildConfigField("String", "YOUTUBE_API_KEY", gradleLocalProperties(rootDir).getProperty("youtube.key"))
+        buildConfigField("String", "MOVIEDB_API_KEY", gradleLocalProperties(rootDir).getProperty("moviedb.key"))
     }
 
     buildFeatures {
