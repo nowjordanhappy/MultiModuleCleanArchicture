@@ -24,8 +24,10 @@ object MovieDataModule {
 
     @Provides
     @Singleton
-    fun provideOAuthentication(): OAuthInterceptor {
-        return OAuthInterceptor("Bearer", Constants.AUTH_TOKEN)
+    fun provideOAuthentication(
+        @Named(Constants.DEFAULT_MOVIEDB_API_KEY_NAME) apiKey: String,
+    ): OAuthInterceptor {
+        return OAuthInterceptor("Bearer", apiKey)
     }
 
 
