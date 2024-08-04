@@ -1,6 +1,5 @@
 package com.devsu.streaming_ui_tv.youtube.youtube_video_player
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -36,7 +35,6 @@ class YouTubeVideoPlayerViewModel @Inject constructor(
                 videoTitle = title
             }
         }
-        Log.v("JordanRA", "YouTubePlayerVM videoId: $videoId - videoTitle: $videoTitle")
         onEvent(YouTubeVideoPlayerEvent.OnSetInitialData(videoId, videoTitle))
     }
 

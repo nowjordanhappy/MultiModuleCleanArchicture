@@ -74,7 +74,6 @@ fun RadioItem(
     ) {
         val context = LocalContext.current
         Column {
-            Log.v("JordanRA", "name: ${radio.name}- image: ${radio.favicon}")
             RadioImage(radio.favicon?.let { Uri.parse(it) } ?: kotlin.run { null })
             Column (
                 modifier = Modifier.padding(horizontal = 10.dp, vertical = 10.dp)
@@ -88,7 +87,6 @@ fun RadioItem(
                         modifier = Modifier.weight(1f)
                     )
                     radio.countrycode?.let {  countrycode->
-                        Log.v("JordanRA", "countrycode: $countrycode: -length: ${countrycode.length}")
                         Box(
                             modifier = Modifier
                                 .weight(1f),

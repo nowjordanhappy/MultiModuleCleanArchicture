@@ -11,7 +11,6 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.devsu.streaming_ui_tv.R
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.customui.DefaultPlayerUiController
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.customui.PlayerUiController
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -148,7 +147,6 @@ class DefaultPlayerUiControllerTV(
         }
         panel.setOnClickListener { fadeControlsContainer.toggleVisibility() }
         playPauseButton.setOnClickListener {
-        Log.v("JordanRA", "clicking playPauseButton")
             onPlayButtonPressed()
         }
         fullscreenButton.setOnClickListener { onFullscreenButtonListener.onClick(fullscreenButton) }

@@ -102,8 +102,6 @@ fun RadioPlayerScreen(
             if (state.playWhenReady) {
                 exoPlayer.prepare()
             }
-
-            Log.v("JordanRA","setting playWhenReady: ${state.playWhenReady}")
         }
 
         Box(
@@ -159,7 +157,6 @@ fun RadioPlayerScreen(
                 Spacer(modifier = Modifier.height(10.dp))
 
                 Button(onClick = {
-                    Log.v("JordanRA","playWhenReady: ${state.playWhenReady}")
                     val newPlayWhenReady = !state.playWhenReady
                     viewModel.onEvent(RadioPlayerEvent.OnSetPlayWhenReady(newPlayWhenReady))
 

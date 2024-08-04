@@ -54,7 +54,6 @@ fun YouTubeChannelItem(
                 if (isFocused) {
                     onChangeItem(channel)
                 }
-                Log.v("TV", "here ${channel.name}- hasFocus: ${isFocused}")
             },
         scale = CardDefaults.scale(focusedScale = 1.2f),
         onClick = { onClick(channel) }

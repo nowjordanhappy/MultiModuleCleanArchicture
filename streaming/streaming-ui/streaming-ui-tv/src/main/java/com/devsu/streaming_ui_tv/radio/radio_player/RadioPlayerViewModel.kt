@@ -1,15 +1,12 @@
 package com.devsu.streaming_ui_tv.radio.radio_player
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.devsu.navigation.NavigationManager
 import com.devsu.navigation.StreamingDirections
-import com.devsu.streaming_ui_tv.youtube.youtube_video_player.YouTubeVideoPlayerUiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -28,7 +25,6 @@ class RadioPlayerViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
-        Log.v("JordanRA", "RadioPlayerViewModel: ${savedStateHandle.keys()}")
         var stationuuid: String? = null
         var name: String? = null
         var urlResolved: String? = null
@@ -55,7 +51,6 @@ class RadioPlayerViewModel @Inject constructor(
             urlResolved = urlResolved,
             favicon = favicon
         )
-        Log.v("JordanRA", "finish init state: $state")
     }
 
     fun onEvent(event: RadioPlayerEvent){

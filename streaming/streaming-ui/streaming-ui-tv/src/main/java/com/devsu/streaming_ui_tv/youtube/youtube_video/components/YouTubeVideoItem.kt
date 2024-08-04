@@ -70,9 +70,7 @@ fun YouTubeVideoItem(
         onClick = { onClick(video) },
         scale = CardDefaults.scale(focusedScale = 1.15f),
     ) {
-        val context = LocalContext.current
         Column {
-            Log.v("JordanRA", "name: ${video.title}- image: ${video.thumbnail}")
             YouTubeVideoImage(video.thumbnail?.let { Uri.parse(it) } ?: kotlin.run { null })
             Column (
                 modifier = Modifier.padding(horizontal = 10.dp, vertical = 10.dp)
@@ -89,7 +87,7 @@ fun YouTubeVideoItem(
                         fontWeight = FontWeight.Bold
                     )
                 )
-                if (!video.description.isNullOrBlank()) Text(
+                if (video.description.isNotBlank()) Text(
                     text = video.description, maxLines = 3, overflow = TextOverflow.Ellipsis,
                     style = TextStyle.Default.copy(
                         color = Color.DarkGray

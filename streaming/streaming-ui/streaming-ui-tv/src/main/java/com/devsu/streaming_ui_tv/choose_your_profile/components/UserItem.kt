@@ -1,9 +1,7 @@
 package com.devsu.streaming_ui_tv.choose_your_profile.components
 
-import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
@@ -68,7 +66,6 @@ fun UserItem(
                     if (isFocused) {
                         onChangeItem(user)
                     }
-                    Log.v("TV", "here ${user.name}- hasFocus: ${isFocused}")
                 }
                 ,
             onClick = { onSelectItem.invoke(user) },

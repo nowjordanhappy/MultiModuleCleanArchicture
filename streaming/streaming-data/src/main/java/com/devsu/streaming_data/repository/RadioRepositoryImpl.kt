@@ -1,6 +1,5 @@
 package com.devsu.streaming_data.repository
 
-import android.util.Log
 import com.devsu.streaming_data.mapper.RadioDtoMapper
 import com.devsu.streaming_data.remote.RadioApi
 import com.devsu.streaming_domain.model.Radio
@@ -22,7 +21,6 @@ class RadioRepositoryImpl(
         reverse: Boolean,
         page: Int
     ): List<Radio> {
-        Log.v("JordanRA", "searchRadioList: ${params}")
         val response = service.searchRadioList(
             limit = limit,
             order = order,
@@ -30,7 +28,6 @@ class RadioRepositoryImpl(
             reverse = reverse,
             offset = max(0, page - 1)
         )
-        Log.v("JordanRA", "searchRadioList after: ${params}")
 
         return response.mapNotNull { mapper.mapToDomainModel(it) }
     }
